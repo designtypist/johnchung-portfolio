@@ -38,14 +38,15 @@
 }
 
 .theme-dark {
-  --bg-background-primary: #0D2438;
-  --bg-background-secondary: #102C44;
-  --bg-background-tertiary: #1E3951;
+  --bg-background-primary: #323433;
+  --bg-background-secondary: #444444;
+  --bg-background-tertiary: #666666;
 
-  --bg-background-form: #1a202c;
+  --bg-background-form: #ffffff;
 
-  --text-copy-primary: #cbd5e0;
-  --text-copy-secondary: #e2e8f0;
+  --text-copy-primary: #ffffff;
+  --text-copy-secondary: #02bb8d;
+  --text-copy-tertiary: #8a8f8e;
 
   --border-border-color-primary:  #1a202c;
 }
