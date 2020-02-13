@@ -19,16 +19,15 @@
             <search-input />
           </li>-->
           <li class="mr-8 mb-6 lg:mb-0">
-            <a v-if="$route.path === '/'" href="/#projects" v-scroll-to="'#projects'" class="text-copy-primary hover:text-gray-600">animation</a>
-            <g-link v-else to="/#projects" class="text-copy-primary hover:text-gray-600">animation</g-link>
+            <!--<a v-if="$route.path === '/'" href="/#projects" v-scroll-to="'#projects'" class="text-copy-primary hover:text-gray-600">animation</a>
+            <g-link v-else to="/#projects" class="text-copy-primary hover:text-gray-600">animation</g-link>-->
+            <g-link to="/" class="text-copy-primary hover:text-gray-600">animation</g-link>
           </li>
           <li class="mr-8 mb-6 lg:mb-0">
-            <a v-if="$route.path === '/'" href="/#projects" v-scroll-to="'#projects'" class="text-copy-primary hover:text-gray-600">portfolio</a>
-            <g-link v-else to="/#projects" class="text-copy-primary hover:text-gray-600">portfolio</g-link>
+            <g-link to="/portfolio" class="text-copy-primary hover:text-gray-600">portfolio</g-link>
           </li>
           <li class="mr-8 mb-6 lg:mb-0">
-            <a v-if="$route.path === '/'" href="/#projects" v-scroll-to="'#projects'" class="text-copy-primary hover:text-gray-600">sketchbook</a>
-            <g-link v-else to="/#projects" class="text-copy-primary hover:text-gray-600">skechbook</g-link>
+            <g-link to="/sketchbook" class="text-copy-primary hover:text-gray-600">sketchbook</g-link>
           </li>
           <li class="mr-8 mb-6 lg:mb-0">
             <g-link to="/about" class="text-copy-primary hover:text-gray-600">about</g-link>
