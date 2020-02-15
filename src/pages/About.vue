@@ -1,7 +1,16 @@
 <template>
   <Layout>
       
-    <div class="overflow-x-hidden border-gray-200 border-b">
+    <div class="container mx-auto flex">
+      <div class="w-1/2 px-2">
+        <g-image src="../../static/avatar.jpg" alt="avatar" class="rounded-full" />
+      </div>
+      <div class="w-1/2 px-2">
+          <h2 class="text-xl font-bold uppercase">Summary</h2>
+          <p>Hi, my name is John Chung. I'am an animator based in Toronto, Ontario. I love bringing things to life through animation and I can't imagine myself not 
+            doing anything else. Feel free to contact me at <a href="mailto:johnchungart@gmail.com">johnchungart@gmail.com</a></p>
+      </div>
+      <!--
       <div class="get-to-know-me container-inner mx-auto text-xl pb-16 relative">
         <h2 class="font-bold mb-6" id="about">Get to know me:</h2>
 
@@ -17,7 +26,7 @@
         <div class="responsive-container">
           <iframe class="responsive-iframe w-full h-full top-0 left-0 border-0" src="https://www.youtube.com/embed/uHo6o1TNQeE" style="border:0;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-      </div> 
+      </div>-->
     </div>
 
   </Layout>

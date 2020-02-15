@@ -68,8 +68,7 @@ a:hover {
 }
 
 nav .active {
-  font-weight: bold;
-  @apply border-black border-b;
+  @apply text-green-700 font-bold;
 }
 
 .container-inner {
