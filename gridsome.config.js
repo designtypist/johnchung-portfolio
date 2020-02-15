@@ -14,9 +14,9 @@ const postcssPlugins = [
 if (process.env.NODE_ENV === 'production') postcssPlugins.push(purgecss())
 
 module.exports = {
-  siteName: 'Gridsome Portfolio Starter',
+  siteName: 'John Chung\'s Portfolio',
   siteDescription: 'A simple portfolio theme for Gridsome powered by Tailwind CSS v1',
-  siteUrl: 'https://gridsome-portfolio-starter.netlify.com',
+  siteUrl: 'https://johnchungdesign.netlify.com',
   plugins: [
     {
       use: '@gridsome/vue-remark',
@@ -48,7 +48,7 @@ module.exports = {
       options: {
         contentTypeName: 'Post',
         feedOptions: {
-          title: 'Gridsome Portfolio Starter Blog',
+          title: 'John Chung\'s Portfolio',
           feed_url: 'https://gridsome-portfolio-starter.netlify.com/rss.xml',
           site_url: 'https://gridsome-portfolio-starter.netlify.com/'
         },
