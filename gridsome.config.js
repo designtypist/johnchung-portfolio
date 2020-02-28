@@ -22,8 +22,8 @@ module.exports = {
       use: '@gridsome/vue-remark',
       options: {
         typeName: 'Documentation', // Required
-        baseDir: './docs', // Where .md files are located
-        pathPrefix: '/docs', // Add route prefix. Optional
+        baseDir: './content/docs', // Where .md files are located
+        pathPrefix: '/content/docs', // Add route prefix. Optional
         template: './src/templates/Documentation.vue', // Optional
         plugins: [
           [ 'gridsome-plugin-remark-shiki', { theme: 'Material-Theme-Palenight', skipInline: true } ]
@@ -33,7 +33,7 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        path: 'blog/**/*.md',
+        path: 'content/blog/**/*.md',
         typeName: 'Post',
         refs: {
           tags: {

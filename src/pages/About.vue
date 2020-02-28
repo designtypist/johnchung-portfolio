@@ -3,12 +3,21 @@
       
     <div class="container mx-auto flex">
       <div class="w-1/2 px-2">
-        <g-image src="../../static/avatar.jpg" alt="avatar" class="rounded-full" />
+        <g-image src="../images/avatar.jpg" alt="avatar" class="rounded-full"/>
       </div>
       <div class="w-1/2 px-2">
-          <h2 class="text-xl font-bold uppercase">Summary</h2>
-          <p>Hi, my name is John Chung. I'am an animator based in Toronto, Ontario. I love bringing things to life through animation and I can't imagine myself not 
-            doing anything else. Feel free to contact me at <a href="mailto:johnchungart@gmail.com">johnchungart@gmail.com</a></p>
+          <div class="">
+            <h2 class="text-xl font-bold uppercase">Summary</h2>
+            <p>Hi, my name is John Chung. I'am an animator based in Toronto, Ontario. I love bringing things to life through animation and I can't imagine myself not 
+              doing anything else. Feel free to contact me at <a href="mailto:johnchungart@gmail.com">johnchungart@gmail.com</a></p>
+          </div>
+          <div class="">
+            <button class="block bg-green-700 hover:bg-green-800 text-white text-sm font-semibold tracking-wide uppercase shadow rounded cursor-pointer px-6 py-3">Resume</button>
+          </div>
+          <div class="">
+            <h2 class="text-xl font-bold uppercase">Software Proficiency</h2>
+            <software-proficency />
+          </div>
       </div>
       <!--
       <div class="get-to-know-me container-inner mx-auto text-xl pb-16 relative">
@@ -33,9 +42,14 @@
 </template>
 
 <script>
+import SoftwareProficency from '../components/SoftwareProficency'
+
 export default {
   metaInfo: {
     title: 'About'
+  },
+  components: {
+    SoftwareProficency
   }
 }
 </script>
