@@ -4,7 +4,7 @@
       <div class="overflow-x-hidden">
       <div class="contact-me pt-16">
         <div class="container-inner mx-auto text-xl pb-4 relative">
-          <h2 class="font-bold mb-1 uppercase text-green-700 text-2xl" id="contact">Say Hi</h2>
+          <h2 class="font-bold mb-1 uppercase text-green-700 text-2xl" id="contact">Contact Me</h2>
 
           <div class="absolute right-0 top-0" style="transform: translate(100%) rotate(180deg)">
             <svg width="170px" height="170px"><use xlink:href="#dots-triangle" /></svg>

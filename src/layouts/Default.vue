@@ -4,7 +4,7 @@
       <nav class="container mx-auto flex flex-wrap justify-between items-center py-8">
         <div  class="uppercase">
           <g-link to="/" class="text-4xl text-green-700">John Chung</g-link>
-          <p class="text-xs">animator • character designer • illustrator</p>
+          <p class="text-xs">animator • illustrator • character designer</p>
           <!--<g-link v-if="theme === 'theme-light'" to="/"><g-image src="../../static/logo.svg" class="w-40" alt="logo" /></g-link>
           <g-link v-else to="/"><g-image src="../../static/logo_dark_mode.svg" class="w-40" alt="logo" /></g-link>-->
         </div>
