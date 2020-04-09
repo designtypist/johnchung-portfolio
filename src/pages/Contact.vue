@@ -46,7 +46,7 @@
           </form>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
 
   </Layout>
@@ -59,4 +59,3 @@ export default {
   }
 }
 </script>
-
