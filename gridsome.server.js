@@ -10,8 +10,23 @@ const path = require('path');
 const pick = require('lodash.pick');
 const { pathPrefix } = require('./gridsome.config')
 
+const gallery_images = require('./content/gallery/gallery_images.json')
+
 module.exports = function (api, options) {
   api.loadSource(store => {
+    const image_gallery = store.addCollection('GalleryImages')
+    
+    for (const gallery_image of gallery_images) {
+      image_gallery.addNode({
+        id: gallery_image.id,
+        title: gallery_image.title,
+        description: gallery_image.description,
+        //tags
+        gallery_type: gallery_image.gallery_type,
+        image: require.resolve('./' + gallery_image.source.location + gallery_image.source.filename),
+      })
+    }
+
     /*
     Clean the pathPrefix
     ====================
