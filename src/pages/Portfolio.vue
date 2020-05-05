@@ -6,7 +6,7 @@
           <div class="leading-tight">Portfolio</div>
         </div>
         <div class="gallery">
-          <div class="gallery-panel" v-for="edge in $page.galleryImages.edges" :key="edge.node.id">
+          <div class="gallery-panel" v-for="edge in $page.portfolioImages.edges" :key="edge.node.id">
             <g-image :src="edge.node.image" :alt="edge.node.title" @click="show" />
             <vue-easy-lightbox
               moveDisabled
@@ -16,22 +16,23 @@
             ></vue-easy-lightbox>
           </div>
         </div>
-
       </div>
 
   </Layout>
 </template>
 
 <page-query>
-query GalleryImages {
-  galleryImages: allGalleryImages{
-    edges {
-      node {
+query PortfolioImages {
+  portfolioImages: allGalleryImages (filter: { gallery_type: { eq: "portfolio" } }) {
+     edges {
+      node  {
         id
         title
         description
-        gallery_type
-        image (fit: cover, quality: 90)
+        tags
+        position
+        filename
+        image
       }
     }
   }
@@ -77,5 +78,6 @@ export default {
   .gallery-panel img {
     width: 100%;
     object-fit: inside;
+    cursor: pointer;
   }
 </style>
