@@ -23,8 +23,11 @@
 
 <page-query>
 query PortfolioImages {
-  portfolioImages: allGalleryImages (filter: { gallery_type: { eq: "portfolio" } }) {
-     edges {
+  portfolioImages: allGalleryImages (
+    filter: { gallery_type: { eq: "portfolio" } } 
+    sortBy: "position", order: ASC
+  ) {
+    edges {
       node  {
         id
         title
