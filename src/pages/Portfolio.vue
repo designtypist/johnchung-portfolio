@@ -1,20 +1,56 @@
 <template>
   <Layout>
-      
-      <div class="hero container-inner mx-auto flex flex-col sm:flex-row justify-between py-16">
-        <div class="text-4xl font-bold w-full sm:w-3/5 text-center sm:text-left">
-          <div class="leading-tight">Portfolio (temp)</div>
+
+      <div class="hero container mx-auto">
+        <div class="text-4xl font-bold text-center">
+          <div class="leading-tight">Portfolio</div>
         </div>
-        <!-- photo gallery -->
+        <div class="gallery">
+          <div class="gallery-panel" v-for="edge in $page.galleryImages.edges" :key="edge.node.id">
+            <g-image :src="edge.node.image" :alt="edge.node.title" />
+          </div>
+        </div>
       </div>
 
   </Layout>
 </template>
 
+<page-query>
+query GalleryImages {
+  galleryImages: allGalleryImages{
+    edges {
+      node {
+        id
+        title
+        description
+        gallery_type
+        image (fit: cover, quality: 90)
+      }
+    }
+  }
+}
+</page-query>
+
 <script>
 export default {
   metaInfo: {
     title: 'Portfolio'
-  }
+  },
 }
 </script>
+
+<style scoped>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-gap: 1rem;
+    max-width: 80rem;
+    margin: 2rem auto;
+    padding: 0 5rem;
+  }
+
+  .gallery-panel img {
+    width: 100%;
+    object-fit: inside;
+  }
+</style>
