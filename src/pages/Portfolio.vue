@@ -7,9 +7,16 @@
         </div>
         <div class="gallery">
           <div class="gallery-panel" v-for="edge in $page.galleryImages.edges" :key="edge.node.id">
-            <g-image :src="edge.node.image" :alt="edge.node.title" />
+            <g-image :src="edge.node.image" :alt="edge.node.title" @click="show" />
+            <vue-easy-lightbox
+              moveDisabled
+              :visible="visible"
+              :imgs="edge.node.image.src"
+              @hide="handleHide"
+            ></vue-easy-lightbox>
           </div>
         </div>
+
       </div>
 
   </Layout>
@@ -32,10 +39,28 @@ query GalleryImages {
 </page-query>
 
 <script>
+import VueEasyLightbox from 'vue-easy-lightbox'
+
 export default {
   metaInfo: {
     title: 'Portfolio'
   },
+  components: {
+    VueEasyLightbox
+  },
+  data() {
+    return {
+      visible: false,
+    }
+  },
+  methods: {
+    show() {
+      this.visible = true
+    },
+    handleHide() {
+      this.visible = false
+    }
+  }
 }
 </script>
 
