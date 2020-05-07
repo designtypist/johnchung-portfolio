@@ -6,17 +6,18 @@
           <div class="leading-tight">Portfolio</div>
         </div>
         <div class="gallery">
-          <div class="gallery-panel" v-for="edge in $page.portfolioImages.edges" :key="edge.node.id">
-            <g-image :src="edge.node.image.src" :alt="edge.node.title" @click="showImg(edge.node.image.src, edge.node.id)" />
-            <vue-easy-lightbox
-                moveDisabled
-                :visible="visible"
-                :imgs="imgs"
-                :index="index"
-                @hide="handleHide"
-              ></vue-easy-lightbox>
+          <div class="gallery-panel" v-for="(edge, index) in $page.portfolioImages.edges" :key="edge.node.id">
+            <g-image :src="edge.node.image.src" :alt="edge.node.title"
+             @click="showMultiple(index)"
+             @load="onUpdateImgGallery(edge.node.image.src)" />
           </div>
-          
+          <vue-easy-lightbox
+            moveDisabled
+            :visible="visible"
+            :imgs="imgs"
+            :index="index"
+            @hide="handleHide"
+          ></vue-easy-lightbox>
         </div>
       </div>
 
@@ -57,13 +58,15 @@ import VueEasyLightbox from 'vue-easy-lightbox'
     data() {
       return {
         imgs: '',
+        image_gallery: [],
         index: 0,
         visible: false,
       }
     },
     methods: {
-      showImg(src, index) {
-        this.imgs = src
+      showMultiple(index) {
+        this.imgs = this.image_gallery
+        this.index = index 
         this.show()
       },
       show() {
@@ -71,6 +74,9 @@ import VueEasyLightbox from 'vue-easy-lightbox'
       },
       handleHide() {
         this.visible = false
+      },
+      onUpdateImgGallery(src) {
+        this.image_gallery.push(src)
       }
     },
   }

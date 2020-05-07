@@ -6,16 +6,18 @@
           <div class="leading-tight">Sketchbook</div>
         </div>
         <div class="gallery">
-          <div class="gallery-panel" v-for="edge in $page.sketchbookImages.edges" :key="edge.node.id">
-            <g-image :src="edge.node.image.src" :alt="edge.node.title" @click="showImg(edge.node.image.src, edge.node.id)" />
-            <vue-easy-lightbox
-                moveDisabled
-                :visible="visible"
-                :imgs="imgs"
-                :index="index"
-                @hide="handleHide"
-              ></vue-easy-lightbox>
-            </div>
+          <div class="gallery-panel" v-for="(edge, index) in $page.sketchbookImages.edges" :key="edge.node.id">
+            <g-image :src="edge.node.image.src" :alt="edge.node.title"
+             @click="showMultiple(index)"
+             @load="onUpdateImgGallery(edge.node.image.src)" />
+          </div>
+          <vue-easy-lightbox
+              moveDisabled
+              :visible="visible"
+              :imgs="imgs"
+              :index="index"
+              @hide="handleHide"
+          ></vue-easy-lightbox>
         </div>
       </div>
 
@@ -56,13 +58,16 @@ query SketchbookImages {
     data() {
       return {
         imgs: '',
+        image_gallery: [],
         index: 0,
         visible: false,
       }
     },
     methods: {
-      showImg(src, index) {
-        this.imgs = src
+      showMultiple(index) {
+        this.imgs = this.image_gallery
+        this.index = index
+        console.log(index)
         this.show()
       },
       show() {
@@ -70,6 +75,10 @@ query SketchbookImages {
       },
       handleHide() {
         this.visible = false
+      },
+      onUpdateImgGallery(src) {
+        this.image_gallery.push(src)
+        console.log(this.image_gallery)
       }
     }
   }
