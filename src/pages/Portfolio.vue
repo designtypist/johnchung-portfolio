@@ -7,14 +7,16 @@
         </div>
         <div class="gallery">
           <div class="gallery-panel" v-for="edge in $page.portfolioImages.edges" :key="edge.node.id">
-            <g-image :src="edge.node.image" :alt="edge.node.title" @click="show" />
+            <g-image :src="edge.node.image.src" :alt="edge.node.title" @click="showImg(edge.node.image.src, edge.node.id)" />
             <vue-easy-lightbox
-              moveDisabled
-              :visible="visible"
-              :imgs="edge.node.image.src"
-              @hide="handleHide"
-            ></vue-easy-lightbox>
+                moveDisabled
+                :visible="visible"
+                :imgs="imgs"
+                :index="index"
+                @hide="handleHide"
+              ></vue-easy-lightbox>
           </div>
+          
         </div>
       </div>
 
@@ -35,7 +37,7 @@ query PortfolioImages {
         tags
         position
         filename
-        image
+        image (quality: 90)
       }
     }
   }
@@ -45,27 +47,33 @@ query PortfolioImages {
 <script>
 import VueEasyLightbox from 'vue-easy-lightbox'
 
-export default {
-  metaInfo: {
-    title: 'Portfolio'
-  },
-  components: {
-    VueEasyLightbox
-  },
-  data() {
-    return {
-      visible: false,
-    }
-  },
-  methods: {
-    show() {
-      this.visible = true
+  export default {
+    metaInfo: {
+      title: 'Portfolio'
     },
-    handleHide() {
-      this.visible = false
-    }
+    components: {
+      VueEasyLightbox
+    },
+    data() {
+      return {
+        imgs: '',
+        index: 0,
+        visible: false,
+      }
+    },
+    methods: {
+      showImg(src, index) {
+        this.imgs = src
+        this.show()
+      },
+      show() {
+        this.visible = true
+      },
+      handleHide() {
+        this.visible = false
+      }
+    },
   }
-}
 </script>
 
 <style scoped>
