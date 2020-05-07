@@ -1,56 +1,23 @@
 <template>
-    <div class="flex flex-wrap">
-      <div class="w-1/4">
-        <div class="software-item">
-          <g-image src="../images/software/after-effects-cc.svg" alt="after-effects" width="50" style="display:inline" />
-          <div class="my-2">After Effects</div>
-        </div>
-      </div>
-      <div class="w-1/4">
-        <div class="software-item">
-          <g-image src="../images/software/after-effects-cc.svg" alt="after-effects" width="50" style="display:inline" />
-          <div class="my-2">After Effects</div>
-        </div>
-      </div>
-      <div class="w-1/4">
-        <div class="software-item">
-          <g-image src="../images/software/after-effects-cc.svg" alt="after-effects" width="50" style="display:inline" />
-          <div class="my-2">After Effects</div>
-        </div>
-      </div>
-      <div class="w-1/4">
-        <div class="software-item">
-          <g-image src="../images/software/after-effects-cc.svg" alt="after-effects" width="50" style="display:inline" />
-          <div class="my-2">After Effects</div>
-        </div>
-      </div>
-      <div class="w-1/4">
-        <div class="software-item">
-          <g-image src="../images/software/after-effects-cc.svg" alt="after-effects" width="50" style="display:inline" />
-          <div class="my-2">After Effects</div>
-        </div>
-      </div>
-      <div class="w-1/4">
-        <div class="software-item">
-          <g-image src="../images/software/after-effects-cc.svg" alt="after-effects" width="50" style="display:inline" />
-          <div class="my-2">After Effects</div>
-        </div>
-      </div>
-      <div class="w-1/4">
-        <div class="software-item">
-          <g-image src="../images/software/after-effects-cc.svg" alt="after-effects" width="50" style="display:inline" />
-          <div class="my-2">After Effects</div>
-        </div>
-      </div>
-    </div>
+  <div class="software-item">
+    <g-image :src="this.src" :alt="this.name" :width="this.width" />
+    <div class="my-2">{{ this.name }}</div>
+  </div>
 </template>
 
 <script>
 export default {
+  props: [ 'name', 'src', 'width'],
   data() {
     return {
-      count: 0
     }
   },
 }
 </script>
+
+<style scoped>
+  .software-item img {
+    display: inline;
+    width: 50px;
+  }
+</style>

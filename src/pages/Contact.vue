@@ -1,8 +1,8 @@
 <template>
   <Layout>
 
-      <div class="overflow-x-hidden">
-      <div class="contact-me pt-16">
+    <div class="container overflow-x-hidden">
+      <div class="contact-me pt-12">
         <div class="container-inner mx-auto text-xl pb-4 relative">
           <h2 class="font-bold mb-1 uppercase text-green-700 text-2xl" id="contact">Contact Me</h2>
 
