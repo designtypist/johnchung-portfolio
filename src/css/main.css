@@ -122,6 +122,6 @@ nav .active {
 }
 
 .vl {
-  border-left: 3px solid white;
+  border-left: 3px solid;
   height: 25px;
 }
