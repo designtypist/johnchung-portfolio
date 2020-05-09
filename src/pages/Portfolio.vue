@@ -46,14 +46,10 @@ query PortfolioImages {
 </page-query>
 
 <script>
-import VueEasyLightbox from 'vue-easy-lightbox'
 
   export default {
     metaInfo: {
       title: 'Portfolio'
-    },
-    components: {
-      VueEasyLightbox
     },
     data() {
       return {
