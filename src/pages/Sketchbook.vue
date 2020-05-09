@@ -46,14 +46,10 @@ query SketchbookImages {
 </page-query>
 
 <script>
-  import VueEasyLightbox from 'vue-easy-lightbox'
 
   export default {
     metaInfo: {
       title: 'Sketchbook'
-    },
-    components: {
-      VueEasyLightbox
     },
     data() {
       return {
