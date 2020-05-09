@@ -33,7 +33,7 @@
           <g-link to="/about" class="text-copy-primary">about</g-link>
         </li>
         <li class="mr-8 mb-6 lg:mb-0">
-          <g-link to="/contact">contact</g-link>
+          <g-link to="/contact" class="text-copy-primary">contact</g-link>
         </li>
         <li class="mr-8 mb-6 lg:mb-0">
           <theme-switcher :theme="theme" @themeChanged="updateTheme" />
@@ -61,7 +61,7 @@
           <div class="flex-initial inline mr-16">
             <a href="mailto:johnchungart@gmail.com" class="text-lg text-copy-primary">johnchungart@gmail.com</a>
           </div>
-          <div class="vl mr-6"></div>
+          <div class="vl mr-6 text-copy-primary"></div>
           <div class="flex-initial inline">
             <ul class="flex items-center">
               <li class="mr-8">
