@@ -7,17 +7,10 @@
 
 <script>
 export default {
-  props: [ 'name', 'src', 'width'],
+  props: [ 'name', 'src', 'width' ],
   data() {
     return {
     }
   },
 }
 </script>
-
-<style scoped>
-  .software-item img {
-    display: inline;
-    width: 50px;
-  }
-</style>

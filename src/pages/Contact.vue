@@ -3,13 +3,13 @@
 
     <div class="container-inner mx-auto">
       <div class="flex flex-wrap md:mx-0 mx-4">
-        <div class="w-1/4 md:inline-block hidden">
-          <g-image class="md:mx-auto p-4" src="../../static/contact_info.png" alt="Contact Info" width="250" />
+        <div class="w-1/4 lg:inline-block hidden">
+          <g-image class="lg:mx-auto p-4" src="../../static/contact_info.png" alt="Contact Info" width="250" />
         </div>
-        <div class="md:w-1/2 w-full relative">
+        <div class="lg:w-1/2 w-full relative">
           <h2 class="font-bold mb-1 uppercase text-green-700 text-2xl" id="contact">Contact Me</h2>
         
-          <div class="absolute right-0 top-0 md:inline hidden" style="transform: translate(100%) rotate(180deg)">
+          <div class="absolute right-0 top-0 lg:inline hidden" style="transform: translate(100%) rotate(180deg)">
             <svg width="170px" height="170px"><use xlink:href="#dots-triangle" /></svg>
           </div>
           
@@ -17,7 +17,7 @@
 
           <div class="text-lg sm:text-lg mb-16">
             <form action="#" class="mb-6">
-              <div class="mb-2 -mx-4">
+              <div class="mb-2 -mx-4 text-black">
                   <div class="mb-2 px-4">
                       <!--<label class="block mb-2 text-copy-primary" for="name">
                           Name
