@@ -156,3 +156,7 @@ nav .active {
   object-fit: inside;
   cursor: pointer;
 }
+
+.software-item img {
+  width: 50px;
+}
