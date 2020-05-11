@@ -1,21 +1,21 @@
 <template>
   <Layout>
 
-    <div class="container mx-auto overflow-x-hidden">
-      <div class="flex flex-wrap pt-12">
-        <div class="w-1/4 mx-4">
-          <g-image src="../../static/contact_info.png" alt="Contact Info" width="250" />
+    <div class="container-inner mx-auto">
+      <div class="flex flex-wrap md:mx-0 mx-4">
+        <div class="w-1/4 md:inline-block hidden">
+          <g-image class="md:mx-auto p-4" src="../../static/contact_info.png" alt="Contact Info" width="250" />
         </div>
-        <div class="w-1/2 text-xl pb-4 relative">
+        <div class="md:w-1/2 w-full relative">
           <h2 class="font-bold mb-1 uppercase text-green-700 text-2xl" id="contact">Contact Me</h2>
         
-          <div class="absolute right-0 top-0" style="transform: translate(100%) rotate(180deg)">
+          <div class="absolute right-0 top-0 md:inline hidden" style="transform: translate(100%) rotate(180deg)">
             <svg width="170px" height="170px"><use xlink:href="#dots-triangle" /></svg>
           </div>
           
           <p class="mb-12">Have a question for me or a work inquiry well then feel free to drop in a line.</p>
 
-          <div class="w-full text-lg sm:text-lg mb-16">
+          <div class="text-lg sm:text-lg mb-16">
             <form action="#" class="mb-6">
               <div class="mb-2 -mx-4">
                   <div class="mb-2 px-4">

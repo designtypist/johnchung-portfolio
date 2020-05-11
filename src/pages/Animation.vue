@@ -1,10 +1,14 @@
 <template>
   <Layout>
 
-    <div class="hero container mx-auto flex flex-col sm:flex-row justify-between">
-      <div class="text-2xl font-bold w-full text-center">
-        <h2 class="leading-tight py-4">Animation Reel</h2>
-        <iframe src="https://player.vimeo.com/video/291040288?app_id=122963&amp;wmode=opaque" allow="autoplay; fullscreen" allowfullscreen="" title="JohnChung_Demoreel2018" id="yui_3_17_2_1_1581739318823_99" width="1200" height="660" frameborder="0"></iframe>
+    <div class="container mx-auto">
+      <div class="flex flex-wrap">
+        <div class="w-full">
+          <h2 class="text-2xl font-bold text-center py-4" @click="testsize()">Animation Reel</h2>
+        </div>
+        <div class="w-full">
+          <iframe class="mx-auto" src="https://player.vimeo.com/video/291040288?app_id=122963" allowfullscreen="true" title="JohnChung_Demoreel2018" id="yui_3_17_2_1_1581739318823_99" frameborder="0" scrolling="no" :width="this.width" :height="this.height" @load="resizeIFrame"></iframe>
+        </div>
       </div>
     </div>
 
@@ -74,6 +78,18 @@
 export default {
   metaInfo: {
     title: 'Animation'
+  },
+  data() {
+    return {
+      width: window.innerWidth / 1.5,
+      height:  window.innerWidth / 2.5
+    }
+  },
+  methods: {
+    resizeIFrame(){
+      this.width = window.innerWidth / 1.5,
+      this.height = window.innerWidth / 2.5
+    }
   }
 }
 </script>
