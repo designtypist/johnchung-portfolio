@@ -1,4 +1,4 @@
-# John Chung's Personal Portfolio
+# Personal Portfolio System
 
 An animation portfolio using Gridsome
 
