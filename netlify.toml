@@ -1,3 +1,10 @@
 [build]
-  publish = "dist"
   command = "gridsome build"
+  functions = "functions"
+  publish = "dist"
+[dev]
+  framework = "#custom"
+  command = "gridsome develop"
+  targetPort = 3000
+  port = 8888
+  publish = "dist"
