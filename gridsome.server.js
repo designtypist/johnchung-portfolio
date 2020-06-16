@@ -8,11 +8,11 @@
 const fs = require('fs');
 const path = require('path');
 const pick = require('lodash.pick');
-const { pathPrefix } = require('./gridsome.config')
+const { pathPrefix } = require('./gridsome.config');
 
-const portfolio_images = require('./content/gallery/image/portfolio_images.json')
-const sketchbook_images = require('./content/gallery/image/sketchbook_images.json')
-const softwares = require('./content/software_proficiency/softwares.json')
+const portfolio_images = require('./content/gallery/image/portfolio_images.json');
+const sketchbook_images = require('./content/gallery/image/sketchbook_images.json');
+const softwares = require('./content/software_proficiency/softwares.json');
 
 module.exports = function (api, options) {
   api.loadSource(store => {

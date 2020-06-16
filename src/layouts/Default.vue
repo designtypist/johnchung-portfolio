@@ -22,6 +22,9 @@
           <g-link to="/animation">animation</g-link>
         </li>
         <li class="lg:mx-4 lg:my-0 mx-0 my-4">
+          <g-link to="/gallery">gallery</g-link>
+        </li>
+        <li class="lg:mx-4 lg:my-0 mx-0 my-4">
           <g-link to="/portfolio">portfolio</g-link>
         </li>
         <li class="lg:mx-4 lg:my-0 mx-0 my-4">
