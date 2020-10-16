@@ -5,9 +5,8 @@
       <h1 class="text-4xl font-bold text-center">Portfolio</h1>
       <div class="gallery">
         <div class="gallery-panel" v-for="(edge, index) in $page.portfolioImages.edges" :key="edge.node.id">
-          <g-image :src="edge.node.image.src" :alt="edge.node.title"
-            @click="showMultiple(index)"
-            @load="onUpdateImgGallery(edge.node.image.src)" />
+          <img :src="edge.node.image.src" :alt="edge.node.title"
+            @click="showMultiple(index)" />
         </div>
         <vue-easy-lightbox
           moveDisabled
@@ -56,6 +55,11 @@ export default {
       visible: false,
     }
   },
+  mounted() {
+    this.$page.portfolioImages.edges.forEach((edge) => {
+      this.image_gallery.push(edge.node.image.src)
+    })
+  },
   methods: {
     showMultiple(index) {
       this.imgs = this.image_gallery
@@ -68,9 +72,6 @@ export default {
     handleHide() {
       this.visible = false
     },
-    onUpdateImgGallery(src) {
-      this.image_gallery.push(src)
-    }
   },
 }
 </script>
