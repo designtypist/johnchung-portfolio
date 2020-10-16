@@ -1,26 +1,22 @@
 [
     {
-        "software_name": "After Effects",
+        "software_name": "Procreate",
+        "filename": "procreate.png"
+    },
+    {
+        "software_name": "Maya",
+        "filename": "maya-2017.svg"
+    },
+    {
+        "software_name": "Adobe After Effects",
         "filename": "after-effects-cc.svg"
     },
     {
-        "software_name": "After Effects",
-        "filename": "after-effects-cc.svg"
+        "software_name": "Adobe Photoshop",
+        "filename": "photoshop-cc.svg"
     },
     {
-        "software_name": "After Effects",
-        "filename": "after-effects-cc.svg"
-    },
-    {
-        "software_name": "After Effects",
-        "filename": "after-effects-cc.svg"
-    },
-    {
-        "software_name": "After Effects",
-        "filename": "after-effects-cc.svg"
-    },
-    {
-        "software_name": "After Effects",
-        "filename": "after-effects-cc.svg"
+        "software_name": "Adobe Premiere",
+        "filename": "premiere-cc.svg"
     }
-]   
+]

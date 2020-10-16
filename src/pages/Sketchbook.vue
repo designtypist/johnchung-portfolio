@@ -64,7 +64,6 @@ export default {
     showMultiple(index) {
       this.imgs = this.image_gallery
       this.index = index
-      console.log(index)
       this.show()
     },
     show() {

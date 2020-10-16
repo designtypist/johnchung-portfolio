@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') postcssPlugins.push(purgecss())
 module.exports = {
   siteName: 'John Chung\'s Portfolio',
   siteDescription: 'A simple portfolio theme for Gridsome powered by Tailwind CSS v1',
-  siteUrl: 'https://johnchungdesign.netlify.com',
+  siteUrl: 'https://johncdraws.com',
   plugins: [
     {
       use: '@gridsome/vue-remark',
@@ -41,34 +41,6 @@ module.exports = {
             create: true
           }
         }
-      }
-    },
-    {
-      use: 'gridsome-plugin-rss',
-      options: {
-        contentTypeName: 'Post',
-        feedOptions: {
-          title: 'John Chung\'s Portfolio',
-          feed_url: 'https://gridsome-portfolio-starter.netlify.com/rss.xml',
-          site_url: 'https://gridsome-portfolio-starter.netlify.com/'
-        },
-        feedItemOptions: node => ({
-          title: node.title,
-          description: node.summary,
-          url: 'https://gridsome-portfolio-starter.netlify.com' + node.path,
-          author: 'Andre Madarang',
-          date: node.date
-        }),
-        output: {
-          dir: './static',
-          name: 'rss.xml'
-        }
-      }
-    },
-    {
-      use: '@gridsome/plugin-sitemap',
-      options: {
-        cacheTime: 600000, // default
       }
     },
   ],
