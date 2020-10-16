@@ -33,7 +33,7 @@ export default function (Vue, { router, head, isClient }) {
 
   head.meta.push({
     name: 'author',
-    content: 'Andre Madarang'
+    content: 'designtypist'
   })
 
   head.link.push({

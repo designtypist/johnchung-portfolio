@@ -1,5 +1,6 @@
 <template>
   <Layout>
+
     <div class="container-inner mx-auto py-16">
       <div v-for="post in $page.posts.edges" :key="post.id" class="post border-gray-400 border-b mb-12">
         <h2 class="text-3xl font-bold"><g-link :to="post.node.path" class="text-copy-primary">{{ post.node.title }}</g-link></h2>
@@ -25,6 +26,7 @@
         :currentPage="$page.posts.pageInfo.currentPage"
       />
     </div>
+    
   </Layout>
 </template>
 
