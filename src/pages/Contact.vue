@@ -16,7 +16,8 @@
           <p class="mb-12">Have a question for me or a work inquiry well then feel free to drop in a line.</p>
 
           <div class="text-md mb-12">
-            <form name="contact" method="POST" data-netlify="true">
+            <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="contact" />
               <div class="mb-2 -mx-4 text-black">
                   <div class="flex mb-2 px-4">
                     <label class="w-1/5 uppercase text-copy-primary font-bold mb-2" for="name">Name</label>
@@ -38,8 +39,13 @@
                     <textarea id="message" rows="5" name="message" placeholder="I love art" required
                       class="w-4/5 bg-background-form border border-border-color-primary shadow rounded outline-none appearance-none focus:border-green-700 mb-2 px-4 py-2"></textarea>
                   </div>
+                  
               </div>
-              <div class="flex">
+              <div class="flex mb-2 px-4">
+                <div class="w-1/5"></div>
+                <div class="w-4/5" data-netlify-recaptcha="true"></div>
+              </div>
+              <div class="flex mb-2 px-4">
                 <div class="w-1/5"></div>
                 <div class="w-4/5">
                   <input type="submit" value="Submit"
