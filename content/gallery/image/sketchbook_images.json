@@ -1,0 +1,22 @@
+[
+	{
+    "title": "",
+    "description": "",
+    "tags": ["sketch"],
+    "position": 1,
+    "source": {
+      "filename": "01_sketch.jpg",
+      "url": null
+    }
+  },
+  {
+    "title": "",
+    "description": "",
+    "tags": ["sketch"],
+    "position": 2,
+    "source": {
+      "filename": "02_sketch.jpg",
+      "url": null
+    }
+  }
+]
