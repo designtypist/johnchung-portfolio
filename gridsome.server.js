@@ -10,8 +10,62 @@ const path = require('path');
 const pick = require('lodash.pick');
 const { pathPrefix } = require('./gridsome.config')
 
+const portfolio_images = require('./content/gallery/image/portfolio_images.json')
+const sketchbook_images = require('./content/gallery/image/sketchbook_images.json')
+const softwares = require('./content/software_proficiency/softwares.json')
+
 module.exports = function (api, options) {
   api.loadSource(store => {
+
+    //Setting up the image gallery collection
+    const image_gallery = store.addCollection('GalleryImages')
+    let image_id = 0
+    
+    for (const image of portfolio_images) {
+      image_gallery.addNode({
+        id: image_id,
+        title: image.title,
+        description: image.description,
+        tags: image.tags,
+        gallery_type: 'portfolio',
+        position: image.position,
+        filename: image.source.filename,
+        image: require.resolve('./src/images/portfolio/' + image.source.filename),
+      })
+
+      image_id += 1
+    }
+
+    for (const image of sketchbook_images) {
+      image_gallery.addNode({
+        id: image_id,
+        title: image.title,
+        description: image.description,
+        tags: image.tags,
+        position: image.position,
+        gallery_type: 'sketchbook',
+        filename: image.source.filename,
+        image: require.resolve('./src/images/sketchbook/' + image.source.filename)
+      })
+
+      image_id += 1
+    }
+
+    //Setting up software proficiency
+    const software_proficiency = store.addCollection('SoftwareProficiency')
+    let software_id = 0
+
+    for (const software of softwares) {
+      software_proficiency.addNode({
+        id: software_id,
+        name: software.software_name,
+        filename: software.filename,
+        image: require.resolve('./src/images/software/' + software.filename)
+      })
+
+      software_id += 1
+    }
+
     /*
     Clean the pathPrefix
     ====================

@@ -9,6 +9,11 @@ export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
 
+  if (process.isClient) {
+      const VueEasyLightbox = require('vue-easy-lightbox').default;
+      Vue.use(VueEasyLightbox);
+  }
+
   Vue.use(VueScrollTo, {
     duration: 500,
     easing: "ease",
@@ -23,12 +28,12 @@ export default function (Vue, { router, head, isClient }) {
 
   head.meta.push({
     name: 'description',
-    content: 'Gridsome Portfolio Starter'
+    content: 'John Chung\'s Portfolio'
   })
 
   head.meta.push({
     name: 'author',
-    content: 'Andre Madarang'
+    content: 'designtypist'
   })
 
   head.link.push({
@@ -36,5 +41,3 @@ export default function (Vue, { router, head, isClient }) {
     href: 'https://fonts.googleapis.com/css?family=Nunito+Sans:400,700'
   })
 }
-
-
