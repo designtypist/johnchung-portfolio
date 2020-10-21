@@ -18,27 +18,23 @@
           </div>
           <div class="my-8">
             <h2 class="text-xl font-bold uppercase my-2">Software Proficiency</h2>
-            <div class="flex flex-wrap">
-              <div class="md:w-1/4 w-1/3" v-for="edge in $page.softwareProficiency.edges" :key="edge.node.id">
-                <SoftwareProficency :name="edge.node.name" :src="edge.node.image.src" />
-              </div>
-            </div>
+            <SoftwareProficency :data="$page.softwareProficiencies.edges" />
           </div>
         </div>
       </div>
     </div>
+
   </Layout>
 </template>
 
 <page-query>
-query softwareProficiency {
-  softwareProficiency : allSoftwareProficiency {
+query {
+  softwareProficiencies : allSoftwareProficiencies {
      edges {
       node  {
         id
         name
-        filename
-        image (quality: 80)
+        icon
       }
     }
   }

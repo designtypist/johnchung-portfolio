@@ -19,21 +19,21 @@
           </div>
         </div>
         <ul class="text-center tracking-wide font-bold w-full block flex-grow lg:flex lg:flex-initial lg:w-auto items-center mt-8 lg:mt-0" :class="isOpen ? 'block': 'hidden'">
+          <!--<li class="lg:mx-4 lg:my-0 mx-0 my-4">
+            <g-link to="/animation">animation</g-link>
+          </li>-->
           <li class="lg:mx-4 lg:my-0 mx-0 my-4">
-            <g-link to="/">animation</g-link>
+            <g-link to="/">portfolio</g-link>
           </li>
           <li class="lg:mx-4 lg:my-0 mx-0 my-4">
-            <g-link to="/portfolio">portfolio</g-link>
-          </li>
-          <li class="lg:mx-4 lg:my-0 mx-0 my-4">
-            <g-link to="/sketchbook">sketchbook</g-link>
+            <g-link to="/personal">personal</g-link>
           </li>
           <li class="lg:mx-4 lg:my-0 mx-0 my-4">
             <g-link to="/about">about</g-link>
           </li>
-          <li class="lg:mx-4 lg:my-0 mx-0 my-4">
+          <!--<li class="lg:mx-4 lg:my-0 mx-0 my-4">
             <g-link to="/contact">contact</g-link>
-          </li>
+          </li>-->
 
           <li class="lg:block hidden lg:mx-4 lg:my-0 mx-0 my-4">
             <theme-switcher :theme="theme" @themeChanged="updateTheme" />

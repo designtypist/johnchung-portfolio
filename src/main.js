@@ -2,8 +2,6 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 import DefaultLayout from '~/layouts/Default.vue'
-import VueScrollTo from 'vue-scrollto'
-import VueFuse from 'vue-fuse'
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
@@ -14,16 +12,9 @@ export default function (Vue, { router, head, isClient }) {
       Vue.use(VueEasyLightbox);
   }
 
-  Vue.use(VueScrollTo, {
-    duration: 500,
-    easing: "ease",
-  })
-
-  Vue.use(VueFuse)
-
   head.meta.push({
     name: 'keywords',
-    content: 'Gridsome,Vue,Tailwind,Tailwind CSS,JavaScript,HTML,CSS,Vue.js,VueJS'
+    content: 'Gridsome,Vue,Vue.js,Vuejs,Tailwind,Tailwind CSS,JohnCDraws,DesignTypist,Portfolio,Artist'
   })
 
   head.meta.push({
