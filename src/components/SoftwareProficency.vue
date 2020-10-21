@@ -1,16 +1,14 @@
 <template>
-  <div class="software-item">
-    <g-image :src="this.src" :alt="this.name" :width="this.width" />
-    <div class="my-2">{{ this.name }}</div>
+  <div class="flex flex-wrap">
+    <div class="md:w-1/4 w-1/3 m-2" v-for="software in data" :key="software.node.id">
+      <g-image class="w-12" :src="software.node.icon" :alt="software.node.name" />
+      <div class="mt-2">{{ software.node.name }}</div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: [ 'name', 'src', 'width' ],
-  data() {
-    return {
-    }
-  },
+  props: [ 'data' ],
 }
 </script>

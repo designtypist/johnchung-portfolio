@@ -106,13 +106,13 @@ nav .active {
 
 @media (min-width: 1200px) {
   .container-inner {
-    max-width: 1000px;
+    max-width: 1024px;
   }
 }
 
 @media (min-width: 1440px) {
   .container-inner {
-    max-width: 1200px;
+    max-width: 1280px;
   }
 }
 
@@ -143,21 +143,9 @@ nav .active {
   height: 25px;
 }
 
-.gallery {
+.gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-template-columns: repeat(3, minmax(20rem, 1fr));
   grid-gap: 1rem;
   max-width: 80rem;
-  margin: 2rem auto;
-  padding: 0 5rem;
-}
-
-.gallery-panel img {
-  width: 100%;
-  object-fit: inside;
-  cursor: pointer;
-}
-
-.software-item img {
-  width: 50px;
 }
