@@ -2,7 +2,7 @@
   <Layout>
 
     <div class="container-inner mx-auto">
-      <h1 class="text-3xl font-bold text-center">Portfolio Art</h1>
+      <h1 class="text-copy-secondary text-3xl font-bold text-center">Portfolio Art</h1>
       <ArtGallery :data="$page.portfolioImages.edges" :full_layout="true" />
     </div>
 

@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 .theme-light {
-  --bg-background-primary: white;
+  --bg-background-primary: #ffffff;
   --bg-background-secondary: #f7fafc;
   --bg-background-tertiary: #e2e8f0;
 
-  --bg-background-form: white;
+  --bg-background-form: #ffffff;
 
   --text-copy-primary: #2d3748;
   --text-copy-secondary: #4a5568;
 
-  --border-border-color-primary: white;
+  --border-border-color-primary: #ffffff;
 }
 
 .theme-light .search-highlighted {
@@ -58,14 +58,14 @@
 }
 
 .theme-dark a {
-  color: white;
+  color: #ffffff;
 }
 
 .theme-light a {
-  color: black;
+  color: #000000;
 }
 .theme-light .anchor-button a {
-  color: white;
+  color: #ffffff;
 }
 
 a {
@@ -116,12 +116,6 @@ nav .active {
   }
 }
 
-.checkmark {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2229%22%20height%3D%2229%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M4.427%2024.93A14.5%2014.5%200%201%201%2024.93%204.427c5.495%205.69%205.416%2014.733-.177%2020.326s-14.637%205.672-20.326.177z%22%20fill%3D%22%232E855A%22/%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M10.234%2012.803l3.67%203.253L20.766%2010%2023%2012l-9.096%208L8%2014.789l2.234-2z%22/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  @apply pl-10;
-}
-
 .iframe-container {
   overflow: hidden;
   /* 16:9 aspect ratio */
@@ -148,4 +142,8 @@ nav .active {
   grid-template-columns: repeat(3, minmax(20rem, 1fr));
   grid-gap: 1rem;
   max-width: 80rem;
+}
+
+.cryptedmail:after {
+  content: attr(data-name) "@" attr(data-domain) "." attr(data-tld); 
 }

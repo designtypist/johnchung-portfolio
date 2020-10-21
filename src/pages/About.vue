@@ -3,8 +3,20 @@
       
     <div class="container-inner mx-auto">
       <div class="flex flex-wrap md:mx-4 mx-2">
-        <div class="md:w-1/3 w-full md:px-6 px-0 md:py-0 py-2">
+        <div class="md:w-1/3 w-full md:px-6 px-0 md:py-0 py-6">
           <g-image class="md:float-right" src="~/images/avatar.jpg" alt="Avatar" />
+          <ul class="text-left">
+            <li class="inline-block mt-3 mr-3">
+              <a href="https://twitter.com/johncdraws" target="_blank">
+                <font-awesome :icon="['fab', 'twitter']" size="2x" />
+              </a>
+            </li>
+            <li class="inline-block mt-3 mr-3">
+              <a href="https://instagram.com/johncdraws" target="_blank">
+                <font-awesome :icon="['fab', 'instagram']" size="2x" />
+              </a>
+            </li>
+          </ul>
         </div>
         <div class="md:w-2/3 w-full">
           <div class="mb-6">
