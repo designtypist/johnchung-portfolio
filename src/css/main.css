@@ -161,3 +161,7 @@ nav .active {
 .software-item img {
   width: 50px;
 }
+
+.cryptedmail:after {
+  content: attr(data-name) "@" attr(data-domain) "." attr(data-tld); 
+}
