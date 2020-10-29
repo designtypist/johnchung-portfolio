@@ -7,6 +7,7 @@ import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faBars, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faInstagram, faTwitter, faTumblr } from '@fortawesome/free-brands-svg-icons'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import './css/main.css';
 
 config.autoAddCss = false;
 library.add(faBars, faEnvelope, 
