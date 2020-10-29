@@ -141,5 +141,3 @@ export default {
   }
 }
 </script>
-
-<style src="../css/main.css" />

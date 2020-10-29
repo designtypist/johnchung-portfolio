@@ -1,4 +1,12 @@
 module.exports = {
+  purge: {
+    mode: 'layers',
+    layers: ['utilities'],
+    content: [
+      './public/**/*.html',
+      './src/**/*.vue',
+    ],
+  },
   theme: {
     extend: {
       spacing: {
