@@ -2,8 +2,8 @@
   <Layout>
 
     <div class="container-inner mx-auto">
-      <h1 class="text-copy-secondary text-3xl font-bold text-center">Portfolio Art</h1>
-      <ArtGallery :data="$page.portfolioImages.edges" :full_layout="true" />
+      <h1 class="text-3xl font-bold text-center">Personal Art</h1>
+      <ArtGallery :data="$page.personalImages.edges" :full_layout="false" />
     </div>
 
   </Layout>
@@ -11,8 +11,8 @@
 
 <page-query>
 query {
-  portfolioImages: allArtGalleries (
-    filter: { name: { eq: "Portfolio" } } 
+  personalImages: allArtGalleries (
+    filter: { name: { eq: "Personal" } } 
   ) {
     edges {
       node  {
@@ -36,7 +36,7 @@ import ArtGallery from '../components/ArtGallery'
 
 export default {
   metaInfo: {
-    title: 'Portfolio'
+    title: 'Personal'
   },
   components: {
     ArtGallery

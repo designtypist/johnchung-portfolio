@@ -7,65 +7,59 @@
 
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios');
 const pick = require('lodash.pick');
 const { pathPrefix } = require('./gridsome.config')
 
-const portfolio_images = require('./content/gallery/image/portfolio_images.json')
-const sketchbook_images = require('./content/gallery/image/sketchbook_images.json')
-const softwares = require('./content/software_proficiency/softwares.json')
-
 module.exports = function (api, options) {
+  api.loadSource(async actions => {
+
+    require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
+    const api_config = {
+      url: process.env.ADMIN_URL,
+      access_token: process.env.ACCESS_TOKEN
+    }
+    if (!api_config.url && !api_config.access_token) {
+      throw new Error(
+        "Admin URL and access token must be provided!"
+      );
+    }
+
+    const [artgallery_response, software_response] = await Promise.all([
+      axios.get(api_config.url + '/api/collections/get/art_galleries?token=' + api_config.access_token),
+      axios.get(api_config.url + '/api/collections/get/software_proficiencies?token=' + api_config.access_token)
+    ]);
+    const artgallery_collection = actions.addCollection({ typeName: 'ArtGalleries' })
+    const software_collection = actions.addCollection({ typeName: 'SoftwareProficiencies' })
+
+    artgallery_response.data.entries.forEach((gallery, index) => {
+      let gallery_images = []
+      //gallery_images = gallery.images.map((image) => { })
+      gallery.images.forEach(image => {
+        gallery_images.push({
+          meta: image.meta,
+          path: api_config.url + image.path
+        })
+      })
+
+      artgallery_collection.addNode({
+        id: index,
+        name: gallery.name,
+        description: gallery.description,
+        images: gallery_images
+      })
+    })
+
+    software_response.data.entries.forEach((software, index) => {
+      software_collection.addNode({
+        id: index,
+        name: software.name,
+        icon: api_config.url + software.icon.path
+      })
+    })
+  })
   api.loadSource(store => {
-
-    //Setting up the image gallery collection
-    const image_gallery = store.addCollection('GalleryImages')
-    let image_id = 0
     
-    for (const image of portfolio_images) {
-      image_gallery.addNode({
-        id: image_id,
-        title: image.title,
-        description: image.description,
-        tags: image.tags,
-        gallery_type: 'portfolio',
-        position: image.position,
-        filename: image.source.filename,
-        image: require.resolve('./src/images/portfolio/' + image.source.filename),
-      })
-
-      image_id += 1
-    }
-
-    for (const image of sketchbook_images) {
-      image_gallery.addNode({
-        id: image_id,
-        title: image.title,
-        description: image.description,
-        tags: image.tags,
-        position: image.position,
-        gallery_type: 'sketchbook',
-        filename: image.source.filename,
-        image: require.resolve('./src/images/sketchbook/' + image.source.filename)
-      })
-
-      image_id += 1
-    }
-
-    //Setting up software proficiency
-    const software_proficiency = store.addCollection('SoftwareProficiency')
-    let software_id = 0
-
-    for (const software of softwares) {
-      software_proficiency.addNode({
-        id: software_id,
-        name: software.software_name,
-        filename: software.filename,
-        image: require.resolve('./src/images/software/' + software.filename)
-      })
-
-      software_id += 1
-    }
-
     /*
     Clean the pathPrefix
     ====================
