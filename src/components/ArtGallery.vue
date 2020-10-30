@@ -30,11 +30,12 @@
         @hide="handleHide"
       ></vue-easy-lightbox>
     </div>
-    <div>
-      <div class="notice mt-6 mb-2">
-        <h2 class="text-xl text-white text-center py-6">Feel free to follow me</h2>
+    <div class="notice">
+      <div class="mt-6 mb-2">
+        <h2 class="text-xl text-center py-6 uppercase font-bold">Follow me</h2>
       </div>
-      <ul class="text-center">
+      <hr />
+      <ul class="mt-2 mb-12 text-center">
         <li class="inline-block p-2">
           <a href="https://twitter.com/johncdraws" target="_blank">
             <font-awesome :icon="['fab', 'twitter']" size="2x" />
@@ -81,9 +82,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .notice {
-    background-color: #02bb8d;
-  }
-</style>
