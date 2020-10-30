@@ -14,42 +14,40 @@ const { pathPrefix } = require('./gridsome.config')
 module.exports = function (api, options) {
   api.loadSource(async actions => {
 
+    //Assign and check environment variables exist
     require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
     const api_config = {
       url: process.env.ADMIN_URL,
       access_token: process.env.ACCESS_TOKEN
     }
     if (!api_config.url && !api_config.access_token) {
-      throw new Error(
-        "Admin URL and access token must be provided!"
-      );
+      throw new Error('Admin URL and access token must be provided!');
     }
 
+    //Create GraphQL collection
+    const artgallery_collection = actions.addCollection({ typeName: 'ArtGalleries' })
+    const software_collection = actions.addCollection({ typeName: 'SoftwareProficiencies' })
+
+    //API request to get contents
     const [artgallery_response, software_response] = await Promise.all([
       axios.get(api_config.url + '/api/collections/get/art_galleries?token=' + api_config.access_token),
       axios.get(api_config.url + '/api/collections/get/software_proficiencies?token=' + api_config.access_token)
     ]);
-    const artgallery_collection = actions.addCollection({ typeName: 'ArtGalleries' })
-    const software_collection = actions.addCollection({ typeName: 'SoftwareProficiencies' })
 
-    artgallery_response.data.entries.forEach((gallery, index) => {
-      let gallery_images = []
-      //gallery_images = gallery.images.map((image) => { })
-      gallery.images.forEach(image => {
-        gallery_images.push({
-          meta: image.meta,
-          path: api_config.url + image.path
-        })
+    //Import contents from the API request to the GraphQL collections
+    artgallery_response.data.entries.map((gallery, index) => {
+      gallery.images.forEach((image_contents) => {
+        image_contents['remote_path'] = api_config.url + image_contents.path
       })
 
       artgallery_collection.addNode({
         id: index,
         name: gallery.name,
         description: gallery.description,
-        images: gallery_images
+        images: gallery.images
       })
     })
-
+    
     software_response.data.entries.forEach((software, index) => {
       software_collection.addNode({
         id: index,
@@ -57,6 +55,7 @@ module.exports = function (api, options) {
         icon: api_config.url + software.icon.path
       })
     })
+    
   })
   api.loadSource(store => {
     
@@ -91,7 +90,6 @@ module.exports = function (api, options) {
     */
     store.addMetadata('pathPrefix', cleanedPathPrefix)
   })
-
   api.beforeBuild(() => {
 
     // Generate an index file for Fuse to search Posts

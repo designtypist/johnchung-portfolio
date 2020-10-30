@@ -3,7 +3,7 @@
     <div v-if="full_layout">
       <div class="flex flex-wrap"  v-for="gallery in data" :key="gallery.node.id">
         <div class="flex-initial w-full my-6" v-for="(image, index) in gallery.node.images" :key="index">
-          <img class="cursor-pointer mx-auto " :src="image.path" :alt="image.meta[0]"
+          <img class="cursor-pointer mx-auto " :src="image.remote_path" :alt="image.meta[0]"
             @click="showMultiple(index)" />
         </div>
       </div>
@@ -18,7 +18,7 @@
     <div v-else>
       <div class="gallery-grid my-2 mx-auto px-5" v-for="gallery in data" :key="gallery.node.id">
         <div v-for="(image, index) in gallery.node.images" :key="index">
-          <img class="w-full cursor-pointer" :src="image.path" :alt="image.meta[0]"
+          <img class="w-full cursor-pointer" :src="image.remote_path" :alt="image.meta[0]"
             @click="showMultiple(index)" />
         </div>
       </div>
@@ -64,7 +64,7 @@ export default {
   },
   mounted() {
     this.data.forEach((gallery) => {
-      gallery.node.images.forEach(image => this.image_gallery.push(image.path))
+      gallery.node.images.forEach(image => this.image_gallery.push(image.remote_path))
     })
   },
   methods: {
