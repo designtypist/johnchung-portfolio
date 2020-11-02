@@ -1,6 +1,6 @@
-# Personal Portfolio System
+# JohnCDraws Portfolio
 
-An animation portfolio using Gridsome
+JohnCDraws portfolio to showcase his art work
 
 ## Features
 
@@ -19,10 +19,10 @@ An animation portfolio using Gridsome
 ## Installation
 
 1. Install Gridsome CLI tool if you don't have it: `npm install --global @gridsome/cli`
-1. Clone the repo: `git clone https://github.com/drehimself/gridsome-portfolio-starter.git`
-1. `cd gridsome-portfolio-starter`
+1. Clone the repo: `git clone https://github.com/designtypist/johncdraws-portfolio.git`
+1. `cd johncdraws-portfolio`
 1. `npm install`
 1. `gridsome develop` to start a local dev server at `http://localhost:8080`
 
-## Notes
-
+## Credits
+Thanks to the contributers of the [Gridsome Portfolio Starter](https://github.com/drehimself/gridsome-portfolio-starter.git)
