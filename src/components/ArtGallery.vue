@@ -3,7 +3,7 @@
     <div v-if="full_layout">
       <div class="flex flex-wrap"  v-for="gallery in data" :key="gallery.node.id">
         <div class="flex-initial w-full my-6" v-for="(image, index) in gallery.node.images" :key="index">
-          <img class="cursor-pointer mx-auto " :src="image.remote_path" :alt="image.meta[0]"
+          <g-image class="cursor-pointer mx-auto" :src="image.local_path" :alt="image.meta[0]"
             @click="showMultiple(index)" />
         </div>
       </div>
@@ -18,7 +18,7 @@
     <div v-else>
       <div class="gallery-grid my-2 mx-auto px-5" v-for="gallery in data" :key="gallery.node.id">
         <div v-for="(image, index) in gallery.node.images" :key="index">
-          <img class="w-full cursor-pointer" :src="image.remote_path" :alt="image.meta[0]"
+          <g-image class="cursor-pointer mx-auto " :src="image.local_path" :alt="image.meta[0]"
             @click="showMultiple(index)" />
         </div>
       </div>
@@ -51,25 +51,36 @@
   </div>
 </template>
 
+<static-query>
+  {
+    metadata{
+      siteUrl
+      pathPrefix
+    }
+  }
+</static-query>
+
 <script>
 export default {
   props: [ 'data', 'full_layout' ],
   data() {
     return {
       imgs: '',
-      image_gallery: [],
+      local_gallery: [],
       index: 0,
       visible: false,
     }
   },
   mounted() {
-    this.data.forEach((gallery) => {
-      gallery.node.images.forEach(image => this.image_gallery.push(image.remote_path))
+    this.data.forEach(gallery => {
+      gallery.node.images.map(image => {
+        this.local_gallery.push(image.local_path)
+      })
     })
-  },
+  },  
   methods: {
     showMultiple(index) {
-      this.imgs = this.image_gallery
+      this.imgs = this.local_gallery
       this.index = index
       this.show()
     },

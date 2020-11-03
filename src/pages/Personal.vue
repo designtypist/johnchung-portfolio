@@ -23,7 +23,7 @@ query {
           meta {
             title
           }
-          remote_path
+          local_path
         }
       }
     }
