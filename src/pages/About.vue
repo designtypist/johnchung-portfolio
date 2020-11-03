@@ -22,7 +22,13 @@
           <div class="mb-6">
             <h2 class="text-xl font-bold uppercase mb-2">Summary</h2>
             <p>Hi, my name is John Chung. I'am an animator based in Toronto, Ontario. I love bringing things to life through animation and I can't imagine myself not 
-              doing anything else. Feel free to contact me at <a href="mailto:johnchungart@gmail.com">johnchungart@gmail.com</a></p>
+              doing anything else. Feel free to contact me at 
+              <a class="cryptedmail" href="#" target="_blank"
+                data-name="johnchungart"
+                data-domain="gmail"
+                data-tld="com"
+                onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></a>.
+            </p>
             <div class="anchor-button my-6">
               <a class="bg-green-700 hover:bg-green-800 hover:text-white text-sm font-semibold tracking-wide uppercase shadow rounded cursor-pointer px-6 py-3"
                 href="https://drive.google.com/file/d/1tVNWQ77pkOiVmeVomFlNK5IPhiQQqo6n/view" target="_blank">Resume</a>

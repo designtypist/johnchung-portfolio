@@ -6,6 +6,8 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 const fs = require('fs');
+var url = require('url');
+var exec = require('child_process').exec;
 const path = require('path');
 const axios = require('axios');
 const pick = require('lodash.pick');
@@ -35,8 +37,40 @@ module.exports = function (api, options) {
     ]);
 
     //Import contents from the API request to the GraphQL collections
-    artgallery_response.data.entries.map((gallery, index) => {
-      gallery.images.forEach((image_contents) => {
+    artgallery_response.data.entries.forEach((gallery, index) => {
+      gallery.images.forEach(image_contents => {
+
+        let DOWNLOAD_DIR = './static/downloads/gallery_images/' + gallery.name + '/'
+        // We will be downloading the files to a directory, so make sure it's there
+        // This step is not required if you have manually created the directory
+        let mkdir = 'mkdir -p ' + DOWNLOAD_DIR
+        let child = exec(mkdir, function(err, stdout, stderr) {
+          if (err) throw err;
+          else download_file_wget(api_config.url + image_contents.path)
+        })
+
+        // Function for downloading file using wget
+        let download_file_wget = function(file_url) {
+          // extract the file name
+          let file_name = url.parse(file_url).pathname.split('/').pop()
+          //if file exist then don't download
+          if (fs.existsSync(DOWNLOAD_DIR + file_name)) {
+            console.log(file_name + " file exists already in the " + DOWNLOAD_DIR + " so the download was cancelled")
+          } else {
+            // compose the wget command
+            let wget = 'wget -P ' + DOWNLOAD_DIR + ' ' + file_url
+            // excute wget using child_process' exec function
+          
+            let child = exec(wget, function(err, stdout, stderr) {
+              if (err) throw err
+              else console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR)
+            })
+          }
+        }
+
+        let image_file = image_contents.path.split(/[/]+/).pop()
+        let local_path = 'downloads/gallery_images/' + gallery.name + '/' + image_file
+        image_contents['local_path'] = local_path
         image_contents['remote_path'] = api_config.url + image_contents.path
       })
 

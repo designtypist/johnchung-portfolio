@@ -5,7 +5,6 @@
       <h1 class="text-copy-secondary text-3xl font-bold text-center">Portfolio Art</h1>
       <ArtGallery :data="$page.portfolioImages.edges" :full_layout="true" />
     </div>
-
   </Layout>
 </template>
 
@@ -23,7 +22,7 @@ query {
           meta {
             title
           }
-          remote_path
+          local_path
         }
       }
     }
