@@ -40,7 +40,7 @@ module.exports = function (api, options) {
     artgallery_response.data.entries.forEach((gallery, index) => {
       gallery.images.forEach(image_contents => {
 
-        let DOWNLOAD_DIR = './static/downloads/gallery_images/' + gallery.name + '/'
+        let DOWNLOAD_DIR = './static/downloads/gallery_images/'
         // We will be downloading the files to a directory, so make sure it's there
         // This step is not required if you have manually created the directory
         let mkdir = 'mkdir -p ' + DOWNLOAD_DIR
@@ -69,8 +69,8 @@ module.exports = function (api, options) {
         }
 
         let image_file = image_contents.path.split(/[/]+/).pop()
-        let local_path = 'downloads/gallery_images/' + gallery.name + '/' + image_file
-        image_contents['local_path'] = local_path
+        image_contents['filename'] = image_file
+        image_contents['local_path'] = '/downloads/gallery_images/' + image_file
         image_contents['remote_path'] = api_config.url + image_contents.path
       })
 
