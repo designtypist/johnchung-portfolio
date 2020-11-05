@@ -31,6 +31,13 @@ module.exports = {
         }
       }
     },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/social/*.md',
+        typeName: 'Social'
+      }
+    }
   ],
   templates: {
     Tag: '/tag/:id'
