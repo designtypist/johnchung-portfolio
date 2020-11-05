@@ -30,24 +30,6 @@
         @hide="handleHide"
       ></vue-easy-lightbox>
     </div>
-    <div class="notice">
-      <div class="mt-6 mb-2">
-        <h2 class="text-xl text-center py-6 uppercase font-bold">Follow me</h2>
-      </div>
-      <hr />
-      <ul class="mt-2 mb-12 text-center">
-        <li class="inline-block p-2">
-          <a href="https://twitter.com/johncdraws" target="_blank">
-            <font-awesome :icon="['fab', 'twitter']" size="2x" />
-          </a>
-        </li>
-        <li class="inline-block p-2">
-          <a href="https://instagram.com/johncdraws" target="_blank">
-            <font-awesome :icon="['fab', 'instagram']" size="2x" />
-          </a>
-        </li>
-      </ul>
-    </div>
   </div>
 </template>
 
