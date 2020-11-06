@@ -29,11 +29,13 @@ module.exports = function (api, options) {
     //Create GraphQL collection
     const artgallery_collection = actions.addCollection({ typeName: 'ArtGalleries' })
     const software_collection = actions.addCollection({ typeName: 'SoftwareProficiencies' })
+    const about_me_collection = actions.addCollection({ typeName: 'AboutMe' })
 
     //API request to get contents
-    const [artgallery_response, software_response] = await Promise.all([
+    const [artgallery_response, software_response, about_me_response] = await Promise.all([
       axios.get(api_config.url + '/api/collections/get/art_galleries?token=' + api_config.access_token),
-      axios.get(api_config.url + '/api/collections/get/software_proficiencies?token=' + api_config.access_token)
+      axios.get(api_config.url + '/api/collections/get/software_proficiencies?token=' + api_config.access_token),
+      axios.get(api_config.url + '/api/singletons/get/about_me_page?token=' + api_config.access_token)
     ]);
 
     //Import contents from the API request to the GraphQL collections
@@ -90,6 +92,11 @@ module.exports = function (api, options) {
       })
     })
     
+    about_me_collection.addNode({
+      description: about_me_response.data.description,
+      resume_link: about_me_response.data.resume_link,
+      demo_reel_link: about_me_response.data.demo_reel_link
+    })
   })
   api.loadSource(store => {
     
