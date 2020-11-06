@@ -3,7 +3,7 @@
     <div v-if="full_layout">
       <div class="flex flex-wrap"  v-for="gallery in data" :key="gallery.node.id">
         <div class="flex-initial w-full my-6" v-for="(image, index) in gallery.node.images" :key="index">
-          <g-image class="cursor-pointer mx-auto" :src="$url(image.local_path)" :alt="image.meta[0]" blur="40"
+          <g-image class="cursor-pointer mx-auto" :src="$url(image.local_path)" :alt="image.meta[0]" blur="50" quality="75"
             @click="showMultiple(index)" />
         </div>
       </div>
@@ -18,7 +18,7 @@
     <div v-else>
       <div class="grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1" v-for="gallery in data" :key="gallery.node.id">
         <div class="" v-for="(image, index) in gallery.node.images" :key="index">
-          <g-image class="cursor-pointer mx-auto " :src="$url(image.local_path)" :alt="image.meta[0]" width="500" fit="cover" blur="40"
+          <g-image class="cursor-pointer mx-auto " :src="$url(image.local_path)" :alt="image.meta[0]" width="500" height="500" blur="50" quality="75"
             @click="showMultiple(index)" />
         </div>
       </div>
