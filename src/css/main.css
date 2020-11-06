@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 .theme-light {
   --bg-background-primary: #ffffff;
@@ -135,13 +135,6 @@ nav .active {
 .verical-line {
   border-left: 3px solid;
   height: 25px;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(20rem, 1fr));
-  grid-gap: 1rem;
-  max-width: 80rem;
 }
 
 .cryptedmail:after {

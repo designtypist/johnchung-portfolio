@@ -21,13 +21,13 @@
           <!--<li class="lg:mx-4 lg:my-0 mx-0 my-4">
             <g-link to="/animation">animation</g-link>
           </li>-->
-          <li class="lg:mx-4 lg:my-0 mx-0 my-4">
+          <li class="lg:mx-4 lg:my-0 mx-0 my-4 lg:text-base text-lg">
             <g-link to="/">portfolio</g-link>
           </li>
-          <li class="lg:mx-4 lg:my-0 mx-0 my-4">
+          <li class="lg:mx-4 lg:my-0 mx-0 my-4 lg:text-base text-lg">
             <g-link to="/personal">personal</g-link>
           </li>
-          <li class="lg:mx-4 lg:my-0 mx-0 my-4">
+          <li class="lg:mx-4 lg:my-0 mx-0 my-4 lg:text-base text-lg">
             <g-link to="/about">about</g-link>
           </li>
           <!--<li class="lg:mx-4 lg:my-0 mx-0 my-4">
@@ -38,30 +38,10 @@
             <theme-switcher :theme="theme" @themeChanged="updateTheme" />
           </li>
           <li class="block lg:hidden py-4">
-            <ul>
-              <li class="inline-block px-2">
-                <a href="#" target="_blank"
-                    data-name="johnchungart"
-                    data-domain="gmail"
-                    data-tld="com"
-                    onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;">
-                  <font-awesome :icon="['fas', 'envelope']" size="lg" />
-                </a>
-              </li>
-              <li class="inline-block px-2">
-                <a href="https://twitter.com/johncdraws" target="_blank">
-                  <font-awesome :icon="['fab', 'twitter']" size="lg" />
-                </a>
-              </li>
-              <li class="inline-block px-2">
-                <a href="https://instagram.com/johncdraws" target="_blank">
-                  <font-awesome :icon="['fab', 'instagram']" size="lg" />
-                </a>
-              </li>
-            </ul>
+            <SocialMedia :data="$static.socials.edges" :centered="true" class="text-center my-4" />
           </li>
           <li class="block lg:hidden text-gray-400 text-xs">
-            Copyright {{ new Date().getFullYear() }}. All rights reserved.
+            &copy; {{ new Date().getFullYear() }}. All rights reserved.
           </li>
           <li class="block lg:hidden text-gray-400 text-xs">
             Developed and designed by 
@@ -75,30 +55,16 @@
       <slot />
     </div>
 
-    <footer class="container mx-auto md:px-16 md:py-8 p-4">
-      <div class="flex flex-wrap items-center my-2">
-        <a class="cryptedmail flex-initial pr-4 text-xl" href="#" target="_blank"
-            data-name="johnchungart"
-            data-domain="gmail"
-            data-tld="com"
-            onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></a>
-        <a class="flex-initial" href="#" target="_blank"
-            data-name="johnchungart"
-            data-domain="gmail"
-            data-tld="com"
-            onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;">
-          <font-awesome :icon="['fas', 'envelope']" size="lg" />
-        </a>
-      </div>
+    <footer class="container mx-auto md:px-16 md:pb-8 md:pt-16 pt-24 pb-12">
       <div class="flex flex-wrap">
-          <div class="flex-initial lg:w-1/2 lg:text-left w-full text-center">
-            <p>Copyright {{ new Date().getFullYear() }}. All rights reserved.<p/>
-          </div>
-          <div class="flex-initial lg:w-1/2 lg:text-left w-full text-center">
-            <p class="lg:float-right none">Developed and designed by 
-              <a href="http://designtypist.com/" target="_blank">DesignTypist</a>
-            </p>
-          </div>
+        <div class="flex-initial lg:w-1/2 lg:text-left w-full text-center">
+          <p>Copyright {{ new Date().getFullYear() }}. All rights reserved.<p/>
+        </div>
+        <div class="flex-initial lg:w-1/2 lg:text-left w-full text-center">
+          <p class="lg:float-right none">Developed and designed by 
+            <a href="http://designtypist.com/" target="_blank">DesignTypist</a>
+          </p>
+        </div>
       </div>
     </footer>
   </div>
@@ -110,17 +76,28 @@ query {
   metadata {
     siteName
   }
+  socials: allSocial {
+    edges {
+      node  {
+        id
+        brand
+        link
+      }
+    }
+  }
 }
 </static-query>
 
 <script>
 import SearchInput from '../components/SearchInput'
 import ThemeSwitcher from '../components/ThemeSwitcher'
+import SocialMedia from '../components/SocialMedia'
 
 export default {
   components: {
     SearchInput,
-    ThemeSwitcher
+    ThemeSwitcher,
+    SocialMedia
   },
   mounted() {
     this.theme = localStorage.getItem('theme') || 'theme-light'

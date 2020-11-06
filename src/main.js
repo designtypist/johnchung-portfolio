@@ -5,13 +5,13 @@ import DefaultLayout from '~/layouts/Default.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faBars, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faInstagram, faTwitter, faTumblr } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram, faTwitter, faVimeo, faBehance, faArtstation } from '@fortawesome/free-brands-svg-icons'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import './css/main.css';
 
 config.autoAddCss = false;
 library.add(faBars, faEnvelope, 
-              faInstagram, faTwitter, faTumblr)
+              faInstagram, faTwitter, faVimeo, faBehance, faArtstation)
 
 export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
@@ -41,5 +41,11 @@ export default function (Vue, { router, head, isClient }) {
   head.link.push({
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css?family=Nunito+Sans:400,700'
+  })
+
+  head.link.push({
+    rel: 'icon',
+    href: '/favicon.ico',
+    type: 'image/x-icon'
   })
 }
