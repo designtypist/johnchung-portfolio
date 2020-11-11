@@ -3,8 +3,8 @@
     <div class="container-inner mx-auto">
       <div class="flex flex-wrap lg:mx-4 mx-2">
         <div class="lg:w-2/5 w-full lg:pr-6 px-0 lg:py-0 py-6">
-          <g-image class="lg:float-right" src="~/images/avatar.jpg" alt="Avatar" width="300" height="300" blur="25" quality="75" />
-          <SocialMedia :data="$page.socials.edges" :centered="false" class="inline-block lg:float-right my-4" />
+          <g-image class="lg:float-right clear-both" src="~/images/avatar.jpg" alt="Avatar" width="300" height="300" blur="25" quality="75" />
+          <SocialMedia :data="$page.socials.edges" :centered="false" class="inline-block lg:float-right clear-both my-4 " />
         </div>
         <div class="lg:w-3/5 w-full">
           <div class="mb-6" v-for="edge in $page.aboutMe.edges" :key="edge.node.id">
