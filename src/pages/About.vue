@@ -7,10 +7,10 @@
           <SocialMedia :data="$page.socials.edges" :centered="false" class="inline-block lg:float-right clear-both my-4 " />
         </div>
         <div class="lg:w-3/5 w-full">
-          <div class="mb-6">
-            <h2 class="text-xl font-bold uppercase mb-2">Summary</h2>
-            <p>Hi, my name is John Chung. I'am an animator based in Toronto, Ontario. I love bringing things to life through animation and I can't imagine myself not 
-              doing anything else. Feel free to contact me at 
+          <div class="mb-6" v-for="edge in $page.aboutMe.edges" :key="edge.node.id">
+            <h2 class="text-xl font-bold uppercase mb-2">About Me</h2>
+            <p>{{edge.node.description}}</p>
+            <p class="my-2">Feel free to contact me at 
               <a class="cryptedmail" href="#" target="_blank"
                 data-name="art"
                 data-domain="johncdraws"
@@ -19,9 +19,9 @@
             </p>
             <div class="anchor-button my-6">
               <a class="bg-green-700 hover:bg-green-800 hover:text-white text-sm font-semibold tracking-wide uppercase shadow rounded cursor-pointer px-6 py-3 mr-2"
-                href="https://drive.google.com/file/d/1tVNWQ77pkOiVmeVomFlNK5IPhiQQqo6n/view" target="_blank">Resume</a>
+                :href="edge.node.resume_link" target="_blank">Resume</a>
               <a class="bg-green-700 hover:bg-green-800 hover:text-white text-sm font-semibold tracking-wide uppercase shadow rounded cursor-pointer px-6 py-3 mr-2"
-                href="https://player.vimeo.com/video/291040288?app_id=122963&amp;wmode=opaque" target="_blank">
+                :href="edge.node.demo_reel_link" target="_blank">
                 Demo Reel <font-awesome :icon="['fab', 'vimeo']" size="1x" />
               </a>
             </div>
@@ -53,6 +53,15 @@ query {
         id
         brand
         link
+      }
+    }
+  }
+  aboutMe: allAboutMe {
+    edges {
+      node  {
+        description
+        resume_link
+        demo_reel_link
       }
     }
   }
