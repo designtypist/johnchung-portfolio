@@ -1,11 +1,19 @@
 language: node_js
 node_js:
-  - "stable"
+  - stable
 cache:
   directories:
   - node_modules
+before_deploy:
+  - npm install -g netlify-cli
 before_script:
-  - "npm i -g gridsome-cli"
-  - "npm i"
+  - npm install -g gridsome-cli
+  - npm install
 script:
-  - "gridsome build"
+  - gridsome build
+deploy:
+  provider: script
+  edge: true
+  script: netlify deploy --dir=dist --prod
+  on:
+    branch: master
