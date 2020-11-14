@@ -28,7 +28,7 @@ query {
           meta {
             title
           }
-          local_path
+          local_path(width: 400, height: 400, quality: 75)
         }
       }
     }
