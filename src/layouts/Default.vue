@@ -58,10 +58,10 @@
     <footer class="container mx-auto md:px-16 md:pb-8 md:pt-16 pt-24 pb-12">
       <div class="flex flex-wrap">
         <div class="flex-initial lg:w-1/2 lg:text-left w-full text-center">
-          <p>Copyright {{ new Date().getFullYear() }}. All rights reserved.<p/>
+          <p>&copy; Copyright {{ new Date().getFullYear() }}. All rights reserved.<p/>
         </div>
         <div class="flex-initial lg:w-1/2 lg:text-left w-full text-center">
-          <p class="lg:float-right none">Developed and designed by 
+          <p class="lg:float-right none">Created by 
             <a href="http://designtypist.com/" target="_blank">DesignTypist</a>
           </p>
         </div>
