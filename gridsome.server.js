@@ -43,8 +43,7 @@ module.exports = function (api, options) {
       gallery.images.forEach(image_contents => {
 
         let DOWNLOAD_DIR = './static/downloads/gallery_images/'
-        // We will be downloading the files to a directory, so make sure it's there
-        // This step is not required if you have manually created the directory
+        // Make directory if it doesn't already exist
         let mkdir = 'mkdir -p ' + DOWNLOAD_DIR
         let child = exec(mkdir, function(err, stdout, stderr) {
           if (err) throw err;
@@ -85,10 +84,46 @@ module.exports = function (api, options) {
     })
     
     software_response.data.entries.forEach((software, index) => {
+      
+      let DOWNLOAD_DIR = './static/downloads/software_icons/'
+      // Make directory if it doesn't already exist
+      let mkdir = 'mkdir -p ' + DOWNLOAD_DIR
+      let child = exec(mkdir, function(err, stdout, stderr) {
+        if (err) throw err;
+        else download_file_wget(api_config.url + software.icon.path)
+      })
+
+      // Function for downloading file using wget
+      let download_file_wget = function(file_url) {
+        // extract the file name
+        let file_name = url.parse(file_url).pathname.split('/').pop()
+        //if file exist then don't download
+        if (fs.existsSync(DOWNLOAD_DIR + file_name)) {
+          console.log(file_name + " file exists already in the " + DOWNLOAD_DIR + " so the download was cancelled")
+        } else {
+          // compose the wget command
+          let wget = 'wget -P ' + DOWNLOAD_DIR + ' ' + file_url
+          // excute wget using child_process' exec function
+        
+          let child = exec(wget, function(err, stdout, stderr) {
+            if (err) throw err
+            else console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR)
+          })
+        }
+      }
+      
+      //Create the software key and value pairs
+      let image_file = software.icon.path.split(/[/]+/).pop()
+      software['filename'] = image_file
+      software['local_path'] = '/downloads/software_icons/' + image_file
+      software['remote_path'] = api_config.url + software.icon.path
+
       software_collection.addNode({
         id: index,
         name: software.name,
-        icon: api_config.url + software.icon.path
+        filename: software.filename,
+        local_path: software.local_path,
+        remote_path: software.remote_path,
       })
     })
     
