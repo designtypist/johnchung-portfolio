@@ -13,9 +13,37 @@ const axios = require('axios');
 const pick = require('lodash.pick');
 const { pathPrefix } = require('./gridsome.config')
 
+//Helper functions
+// Function to make directory if it doesn't already exist
+function mkdir_download_dir(DOWNLOAD_DIR) {
+  let mkdir = 'mkdir -p ' + DOWNLOAD_DIR
+  let child = exec(mkdir, function(err, stdout, stderr) {
+      if (err) throw err;
+      else console.log('directory already exist')
+  })
+}
+
+// Function for downloading file using wget
+function download_file_wget(FILE_URL, DOWNLOAD_DIR) {
+  // extract the file name
+  let file_name = url.parse(FILE_URL).pathname.split('/').pop()
+  //if file exist then don't download
+  if (fs.existsSync(DOWNLOAD_DIR + file_name)) {
+      console.log(file_name + " file exists already in the " + DOWNLOAD_DIR + " so the download was cancelled")
+  } else {
+      // compose the wget command
+      let wget = 'wget -P ' + DOWNLOAD_DIR + ' ' + FILE_URL
+      // excute wget using child_process' exec function
+
+      let child = exec(wget, function(err, stdout, stderr) {
+      if (err) throw err
+      else console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR)
+      })
+  }
+}
+
 module.exports = function (api, options) {
   api.loadSource(async actions => {
-
     //Assign and check environment variables exist
     require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
     const api_config = {
@@ -26,11 +54,6 @@ module.exports = function (api, options) {
       throw new Error('Admin URL and access token must be provided!');
     }
 
-    //Create GraphQL collection
-    const artgallery_collection = actions.addCollection({ typeName: 'ArtGalleries' })
-    const software_collection = actions.addCollection({ typeName: 'SoftwareProficiencies' })
-    const about_me_collection = actions.addCollection({ typeName: 'AboutMe' })
-
     //API request to get contents
     const [artgallery_response, software_response, about_me_response] = await Promise.all([
       axios.get(api_config.url + '/api/collections/get/art_galleries?token=' + api_config.access_token),
@@ -38,37 +61,25 @@ module.exports = function (api, options) {
       axios.get(api_config.url + '/api/singletons/get/about_me_page?token=' + api_config.access_token)
     ]);
 
+    //Create GraphQL collection
+    const artgallery_collection = actions.addCollection('ArtGalleries')
+    const software_collection = actions.addCollection('SoftwareProficiencies')
+    const about_me_collection = actions.addCollection('AboutMe')
+
+    //Make directories for downloaded assets to be stored
+    mkdir_download_dir('./static/downloads/gallery_images/')
+    mkdir_download_dir('./static/downloads/software_icons/')
+
     //Import contents from the API request to the GraphQL collections
     artgallery_response.data.entries.forEach((gallery, index) => {
       gallery.images.forEach(image_contents => {
 
-        let DOWNLOAD_DIR = './static/downloads/gallery_images/'
-        // Make directory if it doesn't already exist
-        let mkdir = 'mkdir -p ' + DOWNLOAD_DIR
-        let child = exec(mkdir, function(err, stdout, stderr) {
-          if (err) throw err;
-          else download_file_wget(api_config.url + image_contents.path)
-        })
+        //Download assets
+        const DOWNLOAD_DIR = './static/downloads/gallery_images/'
+        const FILE_URL = api_config.url + image_contents.path
+        download_file_wget(FILE_URL, DOWNLOAD_DIR)
 
-        // Function for downloading file using wget
-        let download_file_wget = function(file_url) {
-          // extract the file name
-          let file_name = url.parse(file_url).pathname.split('/').pop()
-          //if file exist then don't download
-          if (fs.existsSync(DOWNLOAD_DIR + file_name)) {
-            console.log(file_name + " file exists already in the " + DOWNLOAD_DIR + " so the download was cancelled")
-          } else {
-            // compose the wget command
-            let wget = 'wget -P ' + DOWNLOAD_DIR + ' ' + file_url
-            // excute wget using child_process' exec function
-          
-            let child = exec(wget, function(err, stdout, stderr) {
-              if (err) throw err
-              else console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR)
-            })
-          }
-        }
-
+        //Create the gallery images key and value pairs
         let image_file = image_contents.path.split(/[/]+/).pop()
         image_contents['filename'] = image_file
         image_contents['local_path'] = '/downloads/gallery_images/' + image_file
@@ -84,34 +95,11 @@ module.exports = function (api, options) {
     })
     
     software_response.data.entries.forEach((software, index) => {
-      
-      let DOWNLOAD_DIR = './static/downloads/software_icons/'
-      // Make directory if it doesn't already exist
-      let mkdir = 'mkdir -p ' + DOWNLOAD_DIR
-      let child = exec(mkdir, function(err, stdout, stderr) {
-        if (err) throw err;
-        else download_file_wget(api_config.url + software.icon.path)
-      })
+      //Download assets
+      const DOWNLOAD_DIR = './static/downloads/software_icons/'
+      let FILE_URL = api_config.url + software.icon.path
+      download_file_wget(FILE_URL, DOWNLOAD_DIR)
 
-      // Function for downloading file using wget
-      let download_file_wget = function(file_url) {
-        // extract the file name
-        let file_name = url.parse(file_url).pathname.split('/').pop()
-        //if file exist then don't download
-        if (fs.existsSync(DOWNLOAD_DIR + file_name)) {
-          console.log(file_name + " file exists already in the " + DOWNLOAD_DIR + " so the download was cancelled")
-        } else {
-          // compose the wget command
-          let wget = 'wget -P ' + DOWNLOAD_DIR + ' ' + file_url
-          // excute wget using child_process' exec function
-        
-          let child = exec(wget, function(err, stdout, stderr) {
-            if (err) throw err
-            else console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR)
-          })
-        }
-      }
-      
       //Create the software key and value pairs
       let image_file = software.icon.path.split(/[/]+/).pop()
       software['filename'] = image_file
