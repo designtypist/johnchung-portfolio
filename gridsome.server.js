@@ -48,9 +48,9 @@ module.exports = function (api, options) {
     require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
     const api_config = {
       url: process.env.API_URL,
-      access_token: process.env.ACCESS_TOKEN
+      auth_key: process.env.AUTH_KEY
     }
-    if (!api_config.url && !api_config.access_token) {
+    if (!api_config.url && !api_config.auth_key) {
       throw new Error('API URL and access token must be provided!');
     }
 
