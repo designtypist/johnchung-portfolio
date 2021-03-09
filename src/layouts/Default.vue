@@ -38,7 +38,7 @@
             <theme-switcher :theme="theme" @themeChanged="updateTheme" />
           </li>
           <li class="block lg:hidden py-4">
-            <SocialMedia :data="$static.socials.edges" :centered="true" class="text-center my-4" />
+            <SocialMedia :data="$static.socialMedia.edges" :centered="true" class="text-center my-4" />
           </li>
           <li class="block lg:hidden text-gray-400 text-xs">
             &copy; {{ new Date().getFullYear() }}. All rights reserved.
@@ -76,7 +76,7 @@ query {
   metadata {
     siteName
   }
-  socials: allSocial {
+  socialMedia: allSocialMedia {
     edges {
       node  {
         id

@@ -1,11 +1,9 @@
 <template>
   <div class="gallery">
     <div v-if="full_layout">
-      <div class="flex flex-wrap"  v-for="gallery in data" :key="gallery.node.id">
-        <div class="flex-initial w-full my-6" v-for="(image, index) in gallery.node.images" :key="index">
-          <g-image class="cursor-pointer mx-auto" :src="image.local_path" :alt="image.meta[0]"
-            @click="showMultiple(index)" />
-        </div>
+      <div class="flex flex-wrap"  v-for="(gallery, index) in data" :key="gallery.node.id">
+        <g-image class="portfolio-image cursor-pointer mx-auto" :src="gallery.node.image_url" :alt="gallery.node.name"
+          @click="showMultiple(index)" />
       </div>
       <vue-easy-lightbox
         moveDisabled
@@ -16,9 +14,9 @@
       ></vue-easy-lightbox>
     </div>
     <div v-else>
-      <div class="grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1" v-for="gallery in data" :key="gallery.node.id">
-        <div class="" v-for="(image, index) in gallery.node.images" :key="index">
-          <g-image class="cursor-pointer mx-auto " :src="image.local_path" :alt="image.meta[0]"
+      <div class="grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+        <div v-for="(gallery, index) in data" :key="gallery.node.id">
+          <g-image class="personal-image cursor-pointer mx-auto" :src="gallery.node.image_url" :alt="gallery.node.name" 
             @click="showMultiple(index)" />
         </div>
       </div>
@@ -46,9 +44,7 @@ export default {
   },
   mounted() {
     this.data.forEach(gallery => {
-      gallery.node.images.map(image => {
-        this.local_gallery.push(image.local_path)
-      })
+      this.local_gallery.push(gallery.node.image_url)
     })
   },  
   methods: {
