@@ -37,13 +37,6 @@ module.exports = {
         path: 'content/social/*.md',
         typeName: 'Social'
       }
-    },
-    {
-      use: '@gridsome/source-wordpress',
-      options: {
-        baseUrl: 'http://johncdraws.lsvgnjalol-dv13xo2y53gq.p.runcloud.link',
-        typeName: 'Wordpress',
-      }
     }
   ],
   templates: {
