@@ -86,6 +86,17 @@ nav .active {
   padding-right: 1rem;
 }
 
+.portfolio-image {
+  width: 900px;
+  height: 600px;
+  object-fit: contain;
+}
+.personal-image {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+
 @media (min-width: 640px) {
   .container-inner {
     max-width: 640px;

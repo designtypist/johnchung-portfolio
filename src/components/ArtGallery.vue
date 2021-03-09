@@ -2,7 +2,7 @@
   <div class="gallery">
     <div v-if="full_layout">
       <div class="flex flex-wrap"  v-for="(gallery, index) in data" :key="gallery.node.id">
-        <g-image class="cursor-pointer mx-auto" :src="gallery.node.image_url" :alt="gallery.node.name"
+        <g-image class="portfolio-image cursor-pointer mx-auto" :src="gallery.node.image_url" :alt="gallery.node.name"
           @click="showMultiple(index)" />
       </div>
       <vue-easy-lightbox
@@ -14,9 +14,11 @@
       ></vue-easy-lightbox>
     </div>
     <div v-else>
-      <div class="grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1" v-for="(gallery, index) in data" :key="gallery.node.id">
-        <g-image class="cursor-pointer mx-auto" :src="gallery.node.image_url" :alt="gallery.node.name"
-          @click="showMultiple(index)" />
+      <div class="grid gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+        <div v-for="(gallery, index) in data" :key="gallery.node.id">
+          <g-image class="personal-image cursor-pointer mx-auto" :src="gallery.node.image_url" :alt="gallery.node.name" 
+            @click="showMultiple(index)" />
+        </div>
       </div>
       <vue-easy-lightbox
         moveDisabled
