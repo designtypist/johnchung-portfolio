@@ -37,6 +37,27 @@ module.exports = {
         path: 'content/social/*.md',
         typeName: 'Social'
       }
+    },
+    /*
+    {
+      use: 'gridsome-source-graphql',
+      options: {
+        url: 'http://johncdraws.lsvgnjalol-dv13xo2y53gq.p.runcloud.link/graphql',
+        fieldName: 'wpGraphQL',
+        typeName: 'wpGraphQL',
+        
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+        },
+      },
+    },
+    */
+    {
+      use: '@gridsome/source-wordpress',
+      options: {
+        baseUrl: 'http://johncdraws.lsvgnjalol-dv13xo2y53gq.p.runcloud.link', // required
+        typeName: 'Wordpress', // GraphQL schema name (Optional)
+      }
     }
   ],
   templates: {

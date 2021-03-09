@@ -8,7 +8,7 @@
           <h2 class="text-xl text-center py-6 uppercase font-bold">Follow me</h2>
         </div>
         <hr />
-        <SocialMedia :data="$page.socials.edges" :centered="true" class="text-center my-4" />
+        <SocialMedia :data="$page.socialMedia.edges" :centered="true" class="text-center my-4" />
       </div>
     </div>
   </Layout>
@@ -16,24 +16,16 @@
 
 <page-query>
 query {
-  personalImages: allArtGalleries (
-    filter: { name: { eq: "Personal" } } 
-  ) {
+  personalImages: allPersonalGallery {
     edges {
-      node  {
+      node {
         id
         name
-        description
-        images {
-          meta {
-            title
-          }
-          local_path(width: 400, height: 400, quality: 75)
-        }
+        image_url
       }
     }
   }
-  socials: allSocial {
+  socialMedia: allSocialMedia {
     edges {
       node  {
         id

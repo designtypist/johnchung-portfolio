@@ -4,7 +4,7 @@
       <div class="flex flex-wrap lg:mx-4 mx-2">
         <div class="lg:w-2/5 w-full lg:pr-6 px-0 lg:py-0 py-6">
           <g-image class="lg:float-right clear-both" src="~/images/avatar.jpg" alt="Avatar" width="300" height="300" blur="25" quality="75" />
-          <SocialMedia :data="$page.socials.edges" :centered="false" class="inline-block lg:float-right clear-both my-4 " />
+          <SocialMedia :data="$page.socialMedia.edges" :centered="false" class="inline-block lg:float-right clear-both my-4 " />
         </div>
         <div class="lg:w-3/5 w-full">
           <div class="mb-6" v-for="edge in $page.aboutMe.edges" :key="edge.node.id">
@@ -28,7 +28,7 @@
           </div>
           <div class="my-8">
             <h2 class="text-xl font-bold uppercase my-2">Software Proficiency</h2>
-            <SoftwareProficency :data="$page.softwareProficiencies.edges" />
+            <SoftwareProficency :data="$page.software.edges" />
           </div>
         </div>
       </div>
@@ -38,16 +38,16 @@
 
 <page-query>
 query {
-  softwareProficiencies : allSoftwareProficiencies {
+  software : allSoftware {
      edges {
       node  {
         id
         name
-        local_path(width: 100, height: 100, quality: 75)
+        icon_url
       }
     }
   }
-  socials: allSocial {
+  socialMedia: allSocialMedia {
     edges {
       node  {
         id

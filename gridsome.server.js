@@ -47,79 +47,123 @@ module.exports = function (api, options) {
     //Assign and check environment variables exist
     require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
     const api_config = {
-      url: process.env.ADMIN_URL,
+      url: process.env.API_URL,
       access_token: process.env.ACCESS_TOKEN
     }
     if (!api_config.url && !api_config.access_token) {
-      throw new Error('Admin URL and access token must be provided!');
+      throw new Error('API URL and access token must be provided!');
     }
 
-    //API request to get contents
-    const [artgallery_response, software_response, about_me_response] = await Promise.all([
-      axios.get(api_config.url + '/api/collections/get/art_galleries?token=' + api_config.access_token),
-      axios.get(api_config.url + '/api/collections/get/software_proficiencies?token=' + api_config.access_token),
-      axios.get(api_config.url + '/api/singletons/get/about_me_page?token=' + api_config.access_token)
-    ]);
-
     //Create GraphQL collection
-    const artgallery_collection = actions.addCollection('ArtGalleries')
-    const software_collection = actions.addCollection('SoftwareProficiencies')
-    const about_me_collection = actions.addCollection('AboutMe')
+    const portfolio_collection = actions.addCollection('PortfolioGallery')
+    const personal_collection = actions.addCollection('PersonalGallery')
+    const software_collection = actions.addCollection('Software')
+    const aboutme_collection = actions.addCollection('AboutMe')
+    const socialmedia_collection = actions.addCollection('SocialMedia')
 
-    //Make directories for downloaded assets to be stored
-    mkdir_download_dir('./static/downloads/gallery_images/')
-    mkdir_download_dir('./static/downloads/software_icons/')
+    //API request to get contents
+    const response = await axios.post(api_config.url, {
+      query:
+        `{
+          galleryTypes {
+            edges {
+              node {
+                name
+                slug
+                mediaItems {
+                  edges {
+                    node {
+                      title
+                      sourceUrl
+                    }
+                  }
+                }
+              }
+            }
+          }
+          pages {
+            edges {
+              node {
+                title
+                aboutMe {
+                  description
+                  demoReelLink
+                  resumeLink
+                }
+              }
+            }
+          }
+          socials {
+            edges {
+              node {
+                social {
+                  id
+                  brand
+                  link
+                }
+              }
+            }
+          }
+        }`
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          //Authorization: 'Bearer {token}'
+        }
+      }
+    )
+    .then(function (result) {
+      result.data.data.galleryTypes.edges.forEach((node) => {
+        if(node.node.name == 'Portfolio') {
+          node.node.mediaItems.edges.forEach((node, index) => {
+            portfolio_collection.addNode({
+              id: index,
+              name: node.node.title,
+              image_url: node.node.sourceUrl
+            })
+          })
+        } else if(node.node.name == 'Personal') {
+            node.node.mediaItems.edges.forEach((node, index) => {
+              personal_collection.addNode({
+                id: index,
+                name: node.node.title,
+                image_url: node.node.sourceUrl
+              })
+            })
+        } else if(node.node.name == 'Software Proficiency') {
+            node.node.mediaItems.edges.forEach((node, index) => {
+              software_collection.addNode({
+                id: index,
+                name: node.node.title,
+                icon_url: node.node.sourceUrl
+              })
+            })
+        }
+      });
 
-    //Import contents from the API request to the GraphQL collections
-    artgallery_response.data.entries.forEach((gallery, index) => {
-      gallery.images.forEach(image_contents => {
-
-        //Download assets
-        const DOWNLOAD_DIR = './static/downloads/gallery_images/'
-        const FILE_URL = api_config.url + image_contents.path
-        download_file_wget(FILE_URL, DOWNLOAD_DIR)
-
-        //Create the gallery images key and value pairs
-        let image_file = image_contents.path.split(/[/]+/).pop()
-        image_contents['filename'] = image_file
-        image_contents['local_path'] = '/downloads/gallery_images/' + image_file
-        image_contents['remote_path'] = api_config.url + image_contents.path
+      result.data.data.pages.edges.forEach((node, index) => {
+        if(node.node.title == 'About Me') {
+          aboutme_collection.addNode({
+            id: index,
+            description: node.node.aboutMe.description,
+            resume_link: node.node.aboutMe.resumeLink,
+            demo_reel_link: node.node.aboutMe.demoReelLink
+          })
+        }
       })
 
-      artgallery_collection.addNode({
-        id: index,
-        name: gallery.name,
-        description: gallery.description,
-        images: gallery.images
+      result.data.data.socials.edges.forEach((node) => {
+        socialmedia_collection.addNode({
+          id: node.node.social.id,
+          brand: node.node.social.brand.toLowerCase(),
+          link: node.node.social.link
+        })
       })
     })
-    
-    software_response.data.entries.forEach((software, index) => {
-      //Download assets
-      const DOWNLOAD_DIR = './static/downloads/software_icons/'
-      let FILE_URL = api_config.url + software.icon.path
-      download_file_wget(FILE_URL, DOWNLOAD_DIR)
-
-      //Create the software key and value pairs
-      let image_file = software.icon.path.split(/[/]+/).pop()
-      software['filename'] = image_file
-      software['local_path'] = '/downloads/software_icons/' + image_file
-      software['remote_path'] = api_config.url + software.icon.path
-
-      software_collection.addNode({
-        id: index,
-        name: software.name,
-        filename: software.filename,
-        local_path: software.local_path,
-        remote_path: software.remote_path,
-      })
+    .catch(function (error) {
+      console.log(error);
     })
-    
-    about_me_collection.addNode({
-      description: about_me_response.data.description,
-      resume_link: about_me_response.data.resume_link,
-      demo_reel_link: about_me_response.data.demo_reel_link
-    })
+
   })
   api.loadSource(store => {
     
